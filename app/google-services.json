@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "176518359273",
+    "project_id": "speechease-e7d43",
+    "storage_bucket": "speechease-e7d43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176518359273:android:0a8c1c557be012ba4a6878",
+        "android_client_info": {
+          "package_name": "com.example.speechease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176518359273-habet6unnsum2n054jtitv4ui5p5u0lt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv1uxtDqNyDeytgf2TxnvJJJvoBhtmB6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176518359273-habet6unnsum2n054jtitv4ui5p5u0lt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">SpeechEase</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="full_name">Full Name</string>
+    <string name="your_name">Your Name</string>
+    <string name="email">Email</string>
+    <string name="your_email_id">Your email ID</string>
+
+    <string name="input_error_name">name required</string>
+    <string name="input_error_email">email required</string>
+    <string name="input_error_password">password required</string>
+    <string name="input_error_password_length">password should be atleast 6 characters long</string>
+    <string name="input_error_phone_invalid">enter a valid phone number</string>
+    <string name="input_error_email_invalid">enter a valid email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_notification_channel_id">Notification_Student</string>
+    <string name="Description">Description</string>
+    <string name="Description1">What you Get?</string>
+    <string name="Description2">Skills required</string>
+    <string name="hint"> <font size="280">Answer</font></string>
+
+    <string name="About_us">Social Dukan is one shop for all marketing activities. We are a 2-year-old startup based in Delhi. Our premium services include hosting and managing internship for top companies, raising sponsorship for events, live concerts, managing influencers. We also cater some other services like Graphic Designing, Website Development, Video Designing, etc.\n\nWe have done collaborations with various institutes and companies, such as,  IIT Delhi, IIT Kharagpur, Jadavpur University, Delhi University, Devfest by Google community and a lot more.</string>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/textspeech"
+        android:icon="@drawable/txtspeech"
+        android:title="Text-to-speech"
+     />
+    <item
+        android:id="@+id/template"
+        android:icon="@drawable/prototype"
+        android:title="Templates"
+        />
+    <item android:id="@+id/emoji"
+        android:icon="@drawable/chat"
+        android:title="Emoji speech"
+        />
+
+</menu>
