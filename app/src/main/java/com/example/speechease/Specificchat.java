@@ -1,6 +1,7 @@
 package com.example.speechease;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +21,9 @@ import android.widget.Toast;
 import com.example.speechease.Messages;
 import com.example.speechease.MessagesAdapter;
 import com.example.speechease.R;
+import com.example.speechease.Utils.firebasemodel;
 import com.example.speechease.fragment.BucketRecyclerView;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -30,13 +34,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -45,7 +55,7 @@ public class Specificchat extends AppCompatActivity {
     EditText mgetmessage;
     int i=0;
     ImageButton msendmessagebutton;
-
+    TextToSpeech text;
     CardView msendmessagecardview;
     androidx.appcompat.widget.Toolbar mtoolbarofspecificchat;
     ImageView mimageviewofspecificuser;
@@ -109,28 +119,12 @@ public class Specificchat extends AppCompatActivity {
 
         senderroom=nid;
         recieverroom=mrecieveruid+msenderuid;
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(nid);
-        messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messagesArrayList.clear();
-                for(DataSnapshot snapshot1:snapshot.getChildren())
-                {
-                    Messages messages=snapshot1.getValue(Messages.class);
-                    messagesArrayList.add(messages);
-                }
-                messagesAdapter.notifyDataSetChanged();
-            }
+       // mnameofspecificuser.setText(firebasemodel.getName());
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
 
-        // myRef.FirebaseAuth.getInstance().getUid();.setValue(messages);
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +138,18 @@ public class Specificchat extends AppCompatActivity {
                 else
 
                 {
+                    text =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                        @Override
+                        public void onInit(int i) {
+
+                            if(i!=TextToSpeech.ERROR){
+                                // To Choose language of speech
+                                text.setLanguage(Locale.UK);
+                                text.speak(enteredmessage,TextToSpeech.QUEUE_FLUSH,null);
+                            }
+                        }
+                    });
+
                     Date date=new Date();
                     currenttime=simpleDateFormat.format(calendar.getTime());
                     Messages messages=new Messages(nid,"Unknown",enteredmessage,firebaseAuth.getUid(),date.getTime(),currenttime);
@@ -155,6 +161,8 @@ public class Specificchat extends AppCompatActivity {
                             .push().setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+
+                                    onStart();
 //                                    firebaseDatabase.getReference()
 //                                            .child("chats")
 //                                            .child(recieverroom)
@@ -186,7 +194,26 @@ public class Specificchat extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
+        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(nid);
+        messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messagesArrayList.clear();
 
+                for(DataSnapshot snapshot1:snapshot.getChildren())
+                {
+                    Messages messages=snapshot1.getValue(Messages.class);
+                    messagesArrayList.add(messages);
+                }
+                messagesAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 //        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
 //        documentReference.update("status","Online").addOnSuccessListener(new OnSuccessListener<Void>() {

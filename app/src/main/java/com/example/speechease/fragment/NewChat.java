@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -63,6 +65,7 @@ public class NewChat extends AppCompatActivity {
 
     String currenttime;
     Calendar calendar;
+    TextToSpeech text;
     SimpleDateFormat simpleDateFormat;
 String key;
     MessagesAdapter messagesAdapter;
@@ -110,6 +113,8 @@ String key;
 
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(firebaseAuth.getUid()+key);
         messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
+
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -142,7 +147,17 @@ String key;
                 else
 
                 {
+                    text =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                        @Override
+                        public void onInit(int i) {
 
+                            if(i!=TextToSpeech.ERROR){
+                                // To Choose language of speech
+                                text.setLanguage(Locale.UK);
+                                text.speak(enteredmessage,TextToSpeech.QUEUE_FLUSH,null);
+                            }
+                        }
+                    });
 
 
 
@@ -151,6 +166,8 @@ String key;
                     Date date=new Date();
                     currenttime=simpleDateFormat.format(calendar.getTime());
                     Messages messages=new Messages(firebaseAuth.getUid()+key,"Unknown",enteredmessage,firebaseAuth.getUid(),date.getTime(),currenttime);
+
+
                     firebaseDatabase=FirebaseDatabase.getInstance();
 
 
@@ -160,19 +177,8 @@ String key;
                             .push().setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                        Log.e("HEY","HIII");
 
-
-//                                    firebaseDatabase.getReference()
-//                                            .child("chats")
-//                                            .child(recieverroom)
-//                                            .child("messages")
-//                                            .push()
-//                                            .setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                @Override
-//                                                public void onComplete(@NonNull Task<Void> task) {
-//
-//                                                }
-//                                            });
                                 }
                             });
 

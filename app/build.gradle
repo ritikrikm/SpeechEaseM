@@ -66,5 +66,10 @@ dependencies {
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:8.0.2'
 
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.1'
+
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
 }
 apply plugin: 'com.google.gms.google-services'

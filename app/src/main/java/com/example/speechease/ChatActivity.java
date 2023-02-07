@@ -13,11 +13,13 @@ public class ChatActivity extends RecyclerView.ViewHolder {
 
     public TextView name;
     public RelativeLayout layout;
+    public ImageView edit;
 
     public ChatActivity(@NonNull View itemView) {
         super(itemView);
 
        name = itemView.findViewById(R.id.nameofuser);
        layout = itemView.findViewById(R.id.layoutclick);
+       edit = itemView.findViewById(R.id.edit);
     }
 }

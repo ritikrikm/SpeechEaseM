@@ -54,13 +54,7 @@ public class Verification extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_verification );
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-        int width = displayMetrics.widthPixels;
-        int height = displayMetrics.heightPixels;
-
-        getWindow().setLayout((int)(width*.8),(int)(height*.8));
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
