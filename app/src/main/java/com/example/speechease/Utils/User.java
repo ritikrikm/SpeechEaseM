@@ -7,8 +7,7 @@ public class User {
     public String contactn;
     public String uid;
     public String password;
-    public String profileimg;
-    public String profilestatus;
+
 public String  code;
 
     public User(){
