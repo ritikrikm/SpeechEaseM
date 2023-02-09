@@ -60,33 +60,6 @@ public class Dashboard extends AppCompatActivity {
                 return false;
             }
         });
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem menuItem) {
-//
-//                if(menuItem.getItemId()==R.id.logout){
-//                    AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
-//                    alert.setTitle("Delete")
-//                            .setMessage("Are you sure?")
-//                            .setNegativeButton("No",null)
-//                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                                    mFirebaseAuth.getInstance().signOut();
-//                                    //saving session
-//                                    Save.save(getApplicationContext(), "session", "false");
-//                                    Intent intent = new Intent(getApplicationContext(), Home_Login.class);
-//                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                    startActivity(intent);
-//
-//                                }
-//                            });
-//                    alert.show();
-//                }
-//                return false;
-//            }
-//        });
         if(!haveNetworkConnection()){
             Toast.makeText(Dashboard.this,"No Network Connection",Toast.LENGTH_LONG).show();
         }
