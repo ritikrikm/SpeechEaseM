@@ -37,11 +37,13 @@ public class NameChange extends AppCompatActivity {
                 else{
                     Intent i = getIntent();
                    String nid = i.getStringExtra("ntid");
-                    DocumentReference documentReference=firebaseFirestore.collection("Users").document(nid);
+                   String key = i.getStringExtra("key");
+                    DocumentReference documentReference=firebaseFirestore.collection("Users").document(nid+key);
                     Map<String , Object> userdata=new HashMap<>();
                     userdata.put("name",et.getText().toString());
                     userdata.put("uid",nid);
                     userdata.put("status","Online");
+                    userdata.put("key",key);
                         documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {

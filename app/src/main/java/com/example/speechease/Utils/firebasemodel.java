@@ -6,14 +6,23 @@ public class firebasemodel {
 
     String uid;
         String status;
+        String key;
 
 
-    public firebasemodel(String name, String uid,String status) {
+    public firebasemodel(String key,String name, String uid,String status) {
         this.name = name;
-
+this.key = key;
         this.uid = uid;
         this.status = status;
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public firebasemodel() {

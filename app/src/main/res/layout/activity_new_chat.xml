@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
-        android:background="#075e54"
+        android:background="@color/purple_700"
         android:id="@+id/toolbarofspecificchat">
 
         <RelativeLayout
@@ -92,10 +92,11 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:id="@+id/carviewofsendmessage"
+
         android:layout_toRightOf="@id/getmessage"
         android:layout_marginLeft="-50dp"
         android:layout_marginBottom="5dp"
-        android:backgroundTint="#0D8F80"
+        android:backgroundTint="@color/purple_500"
         android:layout_alignParentBottom="true"
         app:cardCornerRadius="45dp">
 
@@ -103,7 +104,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/cancel_rf_red"
+            android:src="@drawable/baseline_send_24"
             android:padding="5dp"
             android:backgroundTint="@android:color/transparent"
             android:background="@android:color/transparent"

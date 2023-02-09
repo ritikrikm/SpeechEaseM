@@ -46,6 +46,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         if(viewType==ITEM_SEND)
         {
             View view= LayoutInflater.from(context).inflate(R.layout.senderchatlayout,parent,false);
+
             return new SenderViewHolder(view);
         }
         else if(viewType == ITEM_LOUD){
@@ -59,6 +60,8 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         }
     }
 
+
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -70,6 +73,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         if(holder.getClass()==SenderViewHolder.class)
         {
 
+            Log.e("HI","WORKING");
             SenderViewHolder viewHolder=(SenderViewHolder)holder;
             viewHolder.textViewmessaage.setText(messages.getMessage());
             viewHolder.timeofmessage.setText(messages.getCurrenttime());
@@ -79,14 +83,19 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
                     @SuppressLint("RestrictedApi") Context c = getApplicationContext();
                     text = new TextToSpeech(c, new TextToSpeech.OnInitListener() {
+
+
                         @Override
                         public void onInit(int i) {
-                            Log.e("HI","WORKING");
+
                             if(i!=TextToSpeech.ERROR){
                                 // To Choose language of speech
+                                notifyDataSetChanged();
                                 text.setLanguage(Locale.UK);
                                 text.speak(messages.getMessage(),TextToSpeech.QUEUE_FLUSH,null);
                             }
+
+
                         }
                     });
 
@@ -167,6 +176,7 @@ class speaker extends RecyclerView.ViewHolder{
             textViewmessaage=itemView.findViewById(R.id.sendermessage);
             timeofmessage=itemView.findViewById(R.id.timeofmessage);
             loudbtn = itemView.findViewById(R.id.sp_btn);
+
 
         }
     }

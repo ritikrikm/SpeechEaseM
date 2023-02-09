@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -200,12 +201,15 @@ String key;
     private void updatenameoncloudfirestore() {
 
         firebaseFirestore=FirebaseFirestore.getInstance();
+      //  CollectionReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getUid()).collection(firebaseAuth.getUid()+key);
         DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid()+key);
+
         Map<String , Object> userdata=new HashMap<>();
         userdata.put("name","Unknown");
 
-        userdata.put("uid",firebaseAuth.getUid()+key);
+        userdata.put("uid",firebaseAuth.getUid());
         userdata.put("status","Online");
+        userdata.put("key",key);
 
 
         documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {

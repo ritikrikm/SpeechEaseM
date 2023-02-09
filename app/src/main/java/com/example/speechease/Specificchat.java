@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -66,7 +67,7 @@ public class Specificchat extends AppCompatActivity {
     String mrecievername,sendername,mrecieveruid,msenderuid;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    String senderroom,recieverroom;
+    String senderroom,recieverroom,key;
 
     ImageButton mbackbuttonofspecificchat;
 
@@ -87,15 +88,26 @@ public class Specificchat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_chat);
         Intent i = getIntent();
-          nid = i.getStringExtra("ntid");
+        firebaseAuth=FirebaseAuth.getInstance();
+          nid =i.getStringExtra("ntid");
+          String name = i.getStringExtra("name");
+          key = i.getStringExtra("key");
+        mnameofspecificuser=findViewById(R.id.Nameofspecificuser);
+          mnameofspecificuser.setText(name);
 
         mgetmessage=findViewById(R.id.getmessage);
         msendmessagecardview=findViewById(R.id.carviewofsendmessage);
         msendmessagebutton=findViewById(R.id.imageviewsendmessage);
         mtoolbarofspecificchat=findViewById(R.id.toolbarofspecificchat);
-        mnameofspecificuser=findViewById(R.id.Nameofspecificuser);
+
 
         mbackbuttonofspecificchat=findViewById(R.id.backbuttonofspecificchat);
+        mbackbuttonofspecificchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         messagesArrayList=new ArrayList<>();
         mmessagerecyclerview=findViewById(R.id.rv1);
@@ -106,7 +118,7 @@ public class Specificchat extends AppCompatActivity {
         messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
-        firebaseAuth=FirebaseAuth.getInstance();
+
         firebaseDatabase=FirebaseDatabase.getInstance();
         calendar=Calendar.getInstance();
         simpleDateFormat=new SimpleDateFormat("hh:mm a");
@@ -126,9 +138,11 @@ public class Specificchat extends AppCompatActivity {
 
 
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {
+
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View view) {
-
+                messagesAdapter.notifyDataSetChanged();
                 enteredmessage=mgetmessage.getText().toString();
                 if(enteredmessage.isEmpty())
                 {
@@ -138,6 +152,7 @@ public class Specificchat extends AppCompatActivity {
                 else
 
                 {
+
                     text =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                         @Override
                         public void onInit(int i) {
@@ -156,7 +171,7 @@ public class Specificchat extends AppCompatActivity {
                     firebaseDatabase=FirebaseDatabase.getInstance();
 
                     firebaseDatabase.getReference().child("chats")
-                            .child(nid)
+                            .child( firebaseAuth.getUid()+key)
 
                             .push().setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -194,7 +209,8 @@ public class Specificchat extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(nid);
+
+        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child( firebaseAuth.getUid()+key);
         messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -224,4 +240,5 @@ public class Specificchat extends AppCompatActivity {
 //        });
 
     }
+
 }
