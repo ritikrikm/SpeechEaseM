@@ -180,6 +180,7 @@ public class Textspeech extends Fragment {
                         int id = viewHolder.getBindingAdapterPosition();
 
                         String uid = chatAdapter.getItem(id).getUid();
+                        String key = chatAdapter.getItem(id).getKey();
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                         alert.setTitle("Delete")
@@ -188,9 +189,10 @@ public class Textspeech extends Fragment {
                                                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                            firebaseFirestore.collection("Users").document(uid).delete();
+                                                            firebaseFirestore.collection("Users").document(uid+key).delete();
+
                                                                 FirebaseDatabase.getInstance().getReference().child("chats")
-                                                                        .child( uid).removeValue();
+                                                                        .child( uid+key).removeValue();
 
                                                             }
                                                         });

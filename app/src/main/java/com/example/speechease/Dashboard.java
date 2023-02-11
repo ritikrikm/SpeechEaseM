@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +35,7 @@ public class Dashboard extends AppCompatActivity {
     private   FirebaseAuth mFirebaseAuth ;
     androidx.appcompat.widget.Toolbar toolbar;
     private long backPressedTime;
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,8 @@ public class Dashboard extends AppCompatActivity {
 
         navigationView=findViewById( R.id.bottom_nav );
          toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
-        toolbar.setSubtitle("Test Subtitle");
+        toolbar.setSubtitle("Speech Ease");
+        toolbar.setSubtitleTextColor(R.color.purple_500);
         toolbar.inflateMenu(R.menu.main_menu);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
