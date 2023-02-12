@@ -60,7 +60,7 @@ public class Verification extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-        crossiv = (ImageView) findViewById(R.id.cross_btn_rf);
+        crossiv = findViewById(R.id.cross_btn_rf);
         verify_btn=findViewById( R.id.verify_btn );
         otp=findViewById( R.id.otp_et );
         email_txt=findViewById( R.id.textemail );
@@ -122,7 +122,7 @@ public class Verification extends AppCompatActivity {
                 this,
                 mCallbacks);
     }
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+    private final PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 

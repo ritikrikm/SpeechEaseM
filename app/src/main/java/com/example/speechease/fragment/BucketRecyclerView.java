@@ -17,7 +17,7 @@ public class BucketRecyclerView extends RecyclerView {
 
     private List<View> mEmptyViews = Collections.emptyList();
 
-    private AdapterDataObserver mObserver = new AdapterDataObserver() {
+    private final AdapterDataObserver mObserver = new AdapterDataObserver() {
         @Override
         public void onChanged() {
             toggleViews();

@@ -90,11 +90,8 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
 
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        rem_userpass = (CheckBox)findViewById(R.id.checkBox);
-        if(sharedPreferences.getBoolean(KEY_REMEMBER, false))
-            rem_userpass.setChecked(true);
-        else
-            rem_userpass.setChecked(false);
+        rem_userpass = findViewById(R.id.checkBox);
+        rem_userpass.setChecked(sharedPreferences.getBoolean(KEY_REMEMBER, false));
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 

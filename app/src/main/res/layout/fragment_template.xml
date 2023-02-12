@@ -26,11 +26,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:text="Template - 1"
+                android:text="Options in menu"
                 android:textSize="26sp"
                 android:gravity="center"
                 android:layout_margin="10dp"
-                android:id="@+id/img"
+                android:contentDescription="@string/app_name" />
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="10dp"
+            android:layout_below="@id/greeting1"
+            app:cardBackgroundColor="@color/white"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:text="Tip to server"
+                android:textSize="26sp"
+                android:gravity="center"
+                android:layout_margin="10dp"
                 android:contentDescription="@string/app_name" />
 
 

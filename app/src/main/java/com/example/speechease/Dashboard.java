@@ -42,7 +42,7 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         navigationView=findViewById( R.id.bottom_nav );
-         toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
+         toolbar = findViewById(R.id.toolbar);
         toolbar.setSubtitle("Speech Ease");
         toolbar.setSubtitleTextColor(R.color.purple_500);
         toolbar.inflateMenu(R.menu.main_menu);

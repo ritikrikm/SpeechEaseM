@@ -38,7 +38,6 @@
 
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottie_anim_rs"
                     android:visibility="visible"
                     android:layout_width="200dp"
                     android:layout_height="200dp"

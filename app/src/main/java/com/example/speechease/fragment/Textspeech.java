@@ -234,9 +234,9 @@ alert.show();
     public class NoteViewHolder extends RecyclerView.ViewHolder
     {
 
-        private TextView particularusername;
-        private TextView statusofuser;
-        private ImageView edit;
+        private final TextView particularusername;
+        private final TextView statusofuser;
+        private final ImageView edit;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);

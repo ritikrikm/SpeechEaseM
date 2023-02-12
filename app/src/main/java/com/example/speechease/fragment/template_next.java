@@ -34,7 +34,7 @@ public class template_next extends AppCompatActivity {
                             if(i!=TextToSpeech.ERROR){
                                 // To Choose language of speech
                                 text.setLanguage(Locale.UK);
-
+                                
                                 text.speak("Hi, what are the options in the menu.",TextToSpeech.QUEUE_FLUSH,null);
                             }
                         }

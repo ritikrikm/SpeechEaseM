@@ -8,8 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/senderchatdrawable"
-        android:id="@+id/layoutformessage">
+        android:background="@drawable/senderchatdrawable">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
