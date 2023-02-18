@@ -76,8 +76,6 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
             }
         } );
         if(!haveNetworkConnection()){
-
-
             Toast.makeText(getApplicationContext(),"No Network Connection",Toast.LENGTH_LONG).show();
         }
         SESSION();
@@ -157,13 +155,6 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
                                 // progressBars.setVisibility(View.GONE);
 
                                 Log.d( ">> NOTWORKING 1", "onComplete: + COME IN LOOP " );
-                                ////yha bhi aaya run statement...ok
-                                //Toast.makeText( Login_Student.this, "Welcome", Toast.LENGTH_SHORT ).show();
-                                //saving session
-
-                                // Intent intToHome = new Intent(getApplicationContext(),Dashboard.class);//not working TEAM.
-                                //   startActivity(intToHome);
-                                // finish();
 
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
                                 databaseReference.keepSynced(true);
@@ -172,13 +163,12 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                                             User user = dataSnapshot1.getValue(User.class);
-
                                             assert user != null;
-                                         //   pstatus = user.getProfilestatus();
+
 
                                             Log.d("HEL**************","**************************************   "+pstatus);
 
-                                            FirebaseUser firebaseUser=mFirebaseAuth.getCurrentUser();
+                                            FirebaseUser firebaseUser=mFirebaseAuth.getCurrentUser();       //uid
 
                                             if ( firebaseUser.isEmailVerified())
                                             {
