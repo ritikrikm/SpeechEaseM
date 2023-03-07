@@ -82,7 +82,7 @@
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/montserrat"
                         android:hint="Your email ID"
-                        android:textColor="#CD4B4B"
+                        android:textColor="#000"
                         android:textColorHint="#808080"
                         android:textSize="18sp" />
 
@@ -105,7 +105,7 @@
                             android:textSize="18sp"
                             android:id="@+id/Lpass"
                             android:layout_width="match_parent"
-                            android:textColor="#CD4B4B"
+                            android:textColor="#000"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:layout_marginEnd="8dp"

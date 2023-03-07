@@ -89,7 +89,7 @@
                     android:background="@drawable/btn_gradient_style"
                     android:text="   verify   "
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="16sp"/>
                 <TextView
 
                     android:visibility="gone"
@@ -113,7 +113,7 @@
                     android:background="@drawable/btn_gradient_style"
                     android:text="   LOGIN   "
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="16sp"/>
 
 
 

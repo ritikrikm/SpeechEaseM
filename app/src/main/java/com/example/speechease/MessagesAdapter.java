@@ -93,6 +93,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                                 notifyDataSetChanged();
                                 text.setLanguage(Locale.UK);
                                 text.speak(messages.getMessage(),TextToSpeech.QUEUE_FLUSH,null);
+                                
                             }
 
 

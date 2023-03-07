@@ -60,6 +60,11 @@ public class Dashboard extends AppCompatActivity {
 
 
                 }
+                if(item.getItemId() == R.id.profile){
+                    Intent intent = new Intent(getApplicationContext(), profile_activity.class);
+
+                    startActivity(intent);
+                }
                 return false;
             }
         });

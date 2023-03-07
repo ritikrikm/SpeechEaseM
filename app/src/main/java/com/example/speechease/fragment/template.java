@@ -5,8 +5,10 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
@@ -15,14 +17,28 @@ import android.view.ViewGroup;
 
 import com.example.speechease.Home_Login;
 import com.example.speechease.R;
+import com.example.speechease.add_cat;
+import com.example.speechease.modelVH.internal_vh;
+import com.example.speechease.modelVH.internall_md;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Locale;
 
 
 public class template extends Fragment {
-
-    CardView greeting_cate;
-    TextToSpeech text;
+    BucketRecyclerView rv_internall;
+    DatabaseReference drinternall;
+    FirebaseAuth firebaseAuth;
+    private LinearLayoutManager mLayoutManager;
+    FirebaseRecyclerOptions<internall_md> optionsinternall;
+    FirebaseRecyclerAdapter<internall_md, internal_vh> adapterinternall;
+    FloatingActionButton fab;
         // Required empty public constructor
 
 
@@ -31,35 +47,64 @@ public class template extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_template_cate,container,false);
-        greeting_cate = v.findViewById(R.id.greeting_cate);
+        View view=inflater.inflate(R.layout.fragment_template_cate,container,false);
+        firebaseAuth= FirebaseAuth.getInstance();
+        fab = view.findViewById(R.id.add_fab1);
 
-        greeting_cate.setOnClickListener(new View.OnClickListener() {
+        rv_internall = view.findViewById(R.id.rv_internall);
+        mLayoutManager=new LinearLayoutManager(container.getContext());
+        mLayoutManager.setReverseLayout( true );
+        mLayoutManager.setStackFromEnd(true);
+
+        rv_internall.setLayoutManager(mLayoutManager  );
+        rv_internall.setAdapter( adapterinternall );
+        drinternall = FirebaseDatabase.getInstance().getReference().child("TemplateCat");
+        drinternall.keepSynced(true);
+        Query query = drinternall.orderByChild("uid" ).equalTo( firebaseAuth.getUid() );
+        optionsinternall = new FirebaseRecyclerOptions.Builder<internall_md>().setQuery(query,internall_md.class).build();
+        adapterinternall = new FirebaseRecyclerAdapter<internall_md, internal_vh>(optionsinternall) {
             @Override
-            public void onClick(View view) {
+            protected void onBindViewHolder(@NonNull internal_vh holder, int position, @NonNull final internall_md model) {
+                holder.cmpname.setText(model.getName());
 
 
-                    Intent intent = new Intent(getActivity(), template_next.class);
+//                progressBar.setVisibility(View.GONE);
 
-                    startActivity(intent);
 
-//                    text =new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-//                        @Override
-//                        public void onInit(int i) {
+                holder.cv.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), template_next.class);
+                        intent.putExtra( "key",model.getKey() );
+                        startActivity( intent );
+//                        Intent intent = new Intent(getActivity(), InternDetail.class);
+//                        intent.putExtra( "key",model.getId() );
 //
-//                            if(i!=TextToSpeech.ERROR){
-//                                // To Choose language of speech
-//                                text.setLanguage(Locale.UK);
-//
-//                                text.speak("It’s a pleasure to meet you",TextToSpeech.QUEUE_FLUSH,null);
-//                            }
-//                        }
-//                    });
+//                        startActivity( intent );
+                    }
+                } );
 
             }
-        });
 
+            @NonNull
+            @Override
+            public internal_vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return new internal_vh(LayoutInflater.from(view.getContext()).inflate(R.layout.template_layout, parent,false));
+            }
+        };
+        rv_internall.setAdapter(adapterinternall);
+        adapterinternall.startListening();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), add_cat.class);
+
+
+                        startActivity( intent );
+            }
+        });
         // Inflate the layout for this fragment
-        return v;
+        return view;
     }
 }

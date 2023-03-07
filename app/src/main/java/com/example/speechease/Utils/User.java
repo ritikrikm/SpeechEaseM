@@ -7,6 +7,7 @@ public class User {
     public String contactn;
     public String uid;
     public String password;
+    public String gender;
 
 public String  code;
 
@@ -14,7 +15,8 @@ public String  code;
 
     }
 
-    public User(String name, String email, String contactn, String uid, String password, String code) {
+    public User(String gender,String name, String email, String contactn, String uid, String password, String code) {
+        this.gender = gender;
         this.name = name;
         this.email = email;
 this.code=code;
@@ -25,6 +27,14 @@ this.code=code;
         this.password = password;
 
 
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCode() {

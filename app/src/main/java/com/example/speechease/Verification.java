@@ -242,7 +242,7 @@ public class Verification extends AppCompatActivity {
 
                     //final String refrelid = endvr.concat(number);
                     String uid = FirebaseAuth.getInstance().getUid();
-                    User user=new User(fname,email,number,uid,pwd,cd);
+                    User user=new User("female",fname,email,number,uid,pwd,cd);
 
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
