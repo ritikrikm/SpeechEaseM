@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,8 @@ public class internal_vh extends RecyclerView.ViewHolder {
     public TextView cmpname;
 
     public CardView cv;
+    public Toolbar tool;
+    
 
     public internal_vh(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +26,8 @@ public class internal_vh extends RecyclerView.ViewHolder {
 
         cmpname = itemView.findViewById(R.id.cat_card);
         cv = itemView.findViewById(R.id.cardview);
+        tool  = itemView.findViewById(R.id.tool);
+
 
     }
 }

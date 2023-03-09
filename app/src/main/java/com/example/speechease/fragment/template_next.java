@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.example.speechease.R;
 import com.example.speechease.add_cat;
@@ -68,7 +70,26 @@ public class template_next extends AppCompatActivity {
         adapter = new FirebaseRecyclerAdapter<template_md, temp_vh>(options) {
             @Override
             protected void onBindViewHolder(@NonNull final temp_vh tv, int i, @NonNull final template_md md) {
+                tv.toolbar.inflateMenu(R.menu.menu_temp);
+              tv.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                  @Override
+                  public boolean onMenuItemClick(MenuItem menuItem) {
+                      if(menuItem.getItemId()==R.id.edit) {
 
+//                            Intent intent = new Intent(getApplicationContext(), Home_Login.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(intent);
+
+
+                      }
+                      if(menuItem.getItemId() == R.id.delete){
+//                            Intent intent = new Intent(getApplicationContext(), profile_activity.class);
+//
+//                            startActivity(intent);
+                      }
+                      return false;
+                  }
+              });
         tv.name.setText(md.getName());
         tv.cv.setOnClickListener(new View.OnClickListener() {
             @Override

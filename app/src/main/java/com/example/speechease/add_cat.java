@@ -31,6 +31,25 @@ public class add_cat extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!cat.getText().toString().isEmpty()){
+
+//                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("TemplateCat");
+//                    dbref.keepSynced(true);
+//                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                            if (snapshot.getValue() != null){
+//
+//                                Toast.makeText(getApplicationContext(),"User on this phone number already exists",Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    });
+
+
                     String key = FirebaseDatabase.getInstance().getReference().child("TemplateCat").push().getKey();
                     assert key != null;
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("TemplateCat").child(key);

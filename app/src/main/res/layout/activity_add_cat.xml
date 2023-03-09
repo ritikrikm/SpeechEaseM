@@ -31,7 +31,7 @@
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Add Category"
+    android:text="@string/add_category"
     android:textStyle="bold"
     android:id="@+id/add_temp"
     android:textSize="20sp"
@@ -43,7 +43,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Category Name"
+                    android:hint="@string/category_name"
                     android:textColor="#808080"
                     android:textColorHint="#808080"
                     android:layout_marginBottom="10dp"/>
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_gradient_style"
-                    android:text="ADD"
+                    android:text="@string/add"
                     android:textColor="@color/white"
                     android:textSize="12sp"/>
 

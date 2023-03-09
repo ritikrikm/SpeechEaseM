@@ -6,20 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.speechease.Home_Login;
 import com.example.speechease.R;
+import com.example.speechease.Utils.Save;
 import com.example.speechease.add_cat;
 import com.example.speechease.modelVH.internal_vh;
 import com.example.speechease.modelVH.internall_md;
+import com.example.speechease.profile_activity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -66,6 +70,26 @@ public class template extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull internal_vh holder, int position, @NonNull final internall_md model) {
                 holder.cmpname.setText(model.getName());
+                holder.tool.inflateMenu(R.menu.menu_temp);
+                holder.tool.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getItemId()==R.id.edit) {
+
+//                            Intent intent = new Intent(getApplicationContext(), Home_Login.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(intent);
+
+
+                        }
+                        if(item.getItemId() == R.id.delete){
+//                            Intent intent = new Intent(getApplicationContext(), profile_activity.class);
+//
+//                            startActivity(intent);
+                        }
+                        return false;
+                    }
+                });
 
 
 //                progressBar.setVisibility(View.GONE);
