@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +36,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class template_next extends AppCompatActivity {
     BucketRecyclerView recyclerView;
@@ -91,6 +95,8 @@ public class template_next extends AppCompatActivity {
                   }
               });
         tv.name.setText(md.getName());
+
+
         tv.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,9 +106,44 @@ public class template_next extends AppCompatActivity {
 
                             if(i!=TextToSpeech.ERROR){
                                 // To Choose language of speech
-                                text.setLanguage(Locale.UK);
+                                text =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                                    @Override
+                                    public void onInit(int i) {
 
-                                text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
+                                        if(i!=TextToSpeech.ERROR){
+                                            // To Choose language of speech
+                                            text.setLanguage(Locale.UK);
+                                            text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
+                                            Log.d("UID",md.getUid());
+                                        }
+                                    }
+                                });
+//                                Set<String> a=new HashSet<>();
+//                                a.add("male");//here you can give male if you want to select male voice.
+//                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+//                                String s = String.valueOf(text.setLanguage(Locale.FRENCH));
+//                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale("en","US"),400,200,true,a);
+//                                text.setVoice(v);
+//                                text.setSpeechRate(0.8f);
+
+                                // int result = T2S.setLanguage(Locale.US);
+//                                int result = text.setVoice(v);
+//
+//                                if (result == TextToSpeech.LANG_MISSING_DATA
+//                                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                                    Log.e("TTS", "This Language is not supported");
+//                                } else {
+//                                    // btnSpeak.setEnabled(true);
+//                                    Log.e("TTS", "HI");
+////                                    text.setLanguage(Locale.ENGLISH);
+//                                    text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
+//                                }
+
+
+
+//                                text.setLanguage(Locale.ENGLISH);
+//
+//                                text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
                             }
                         }
                     });
@@ -141,5 +182,17 @@ public class template_next extends AppCompatActivity {
         adapter.startListening();
     }
 
-
+//    private class TTSInit extends AsyncTask<Void, Void, Void> {
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            t=new TextToSpeech(getContext(), status -> {
+//                if (status == TextToSpeech.SUCCESS) {
+//                    t.setLanguage(Locale.ENGLISH);
+//                    /* now you can invoke speak() */
+//                }
+//            });
+//            return null;
+//        }
+//    }
 }
