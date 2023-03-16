@@ -47,7 +47,7 @@
                     android:textColor="#000"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    android:text="Check Email"
+                    android:text="@string/check_email"
                     android:textAlignment="center"/>
                 <TextView
                     android:id="@+id/title_001"
@@ -57,7 +57,7 @@
                     android:textColor="#000"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    android:text="Enter The OTP"
+                    android:text="@string/enter_the_otp"
                     android:textAlignment="center"/>
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -75,7 +75,7 @@
                     android:id="@+id/otp_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="               OTP               "
+                    android:hint="@string/otp"
                     android:textColor="#808080"
                     android:textColorHint="#808080"
                     android:layout_marginBottom="10dp"/>
@@ -87,9 +87,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_gradient_style"
-                    android:text="   verify   "
+                    android:text="@string/verify"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="16sp"/>
                 <TextView
 
                     android:visibility="gone"
@@ -98,7 +98,7 @@
                     android:gravity="start"
                     android:textStyle="italic"
                     android:layout_height="wrap_content"
-                    android:text="We have sent the link to your E-mail,Please Verify and get back to us."
+                    android:text="@string/email_verify_message"
                     android:textSize="20sp"
                     android:padding="8dp"
                     android:fontFamily="@font/montserrat"
@@ -111,9 +111,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_gradient_style"
-                    android:text="   LOGIN   "
+                    android:text="@string/login_verify"
                     android:textColor="#fff"
-                    android:textSize="20sp"/>
+                    android:textSize="16sp"/>
 
 
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragment.template_next">
 
     <RelativeLayout
@@ -12,51 +12,33 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
             android:id="@+id/greeting1"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="12dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:text="Options in menu"
-                android:textSize="26sp"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:contentDescription="@string/app_name" />
-
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
-            android:layout_below="@id/greeting1"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
             app:cardMaxElevation="12dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true">
+
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:text="Tip to server"
-                android:textSize="26sp"
-                android:gravity="center"
+
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:text="@string/options_in_menu"
+                android:textSize="20sp" />
 
 
         </androidx.cardview.widget.CardView>
+
 
 
     </RelativeLayout>

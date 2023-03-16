@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name Display Here"
+                    android:text="@string/name_display_here"
 
                     android:layout_marginStart="12dp"
                     android:textSize="18sp"
@@ -56,7 +56,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status Displays here"
+                    android:text="@string/status_displays_here"
                     android:textSize="12sp"
                     android:layout_marginStart="15dp"
                     android:visibility="gone"
@@ -67,15 +67,18 @@
                     android:textColor="#6a6a6a">
 
                 </TextView>
+
                 <ImageView
+                    android:id="@+id/edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/edit"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/baseline_edit_24"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    />
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/baseline_edit_24" />
 
             </RelativeLayout>
 

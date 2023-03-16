@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unknown"
+                android:text="@string/new_chat_default"
                 android:textSize="20sp"
                 android:layout_toEndOf="@id/backbuttonofspecificchat"
                 android:id="@+id/Nameofspecificuser"
@@ -72,7 +72,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Type a message"
+        android:hint="@string/type_a_message"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
         android:paddingLeft="20dp"

@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:textColor="#fff"
@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Email"
+                        android:text="@string/email"
                         android:textColor="#000"
                         android:textSize="16sp" />
 
@@ -81,8 +81,8 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:hint="Your email ID"
-                        android:textColor="#CD4B4B"
+                        android:hint="@string/your_email_id"
+                        android:textColor="#000"
                         android:textColorHint="#808080"
                         android:textSize="18sp" />
 
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Password"
+                        android:text="@string/password"
                         android:textColor="#000"
                         android:textSize="16sp" />
 
@@ -105,7 +105,7 @@
                             android:textSize="18sp"
                             android:id="@+id/Lpass"
                             android:layout_width="match_parent"
-                            android:textColor="#CD4B4B"
+                            android:textColor="#000"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:layout_marginEnd="8dp"
@@ -120,7 +120,7 @@
 
 
                     <CheckBox
-                        android:text="Remember me"
+                        android:text="@string/remember_me"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
@@ -132,7 +132,7 @@
                         android:layout_gravity="end"
                         android:id="@+id/frgt_pass"
                         android:layout_marginEnd="12dp"
-                        android:text="Forgot Password?"
+                        android:text="@string/forgot_password"
                         android:textColor="@color/black"
                         android:gravity="end"/>
 
@@ -155,7 +155,7 @@
                 android:id="@+id/go1"
                 android:elevation="6dp"
                 android:background="@drawable/btn_gradient_style"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="@color/white"
                 />
         </LinearLayout>
@@ -179,11 +179,11 @@
                 android:fontFamily="@font/montserrat"
                 android:layout_marginBottom="16dp"
                 android:layout_centerInParent="true"
-                android:text="Haven't Signed Up?"/>
+                android:text="@string/haven_t_signed_up"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:id="@+id/signup"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#fff"

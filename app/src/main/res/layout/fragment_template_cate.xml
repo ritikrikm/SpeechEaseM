@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Pre defined"
+            android:text="@string/template_categories"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -25,54 +25,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/relative1"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+        <com.example.speechease.fragment.BucketRecyclerView
+            android:id="@+id/rv_internall"
+            android:layout_marginTop="20dp"
 
-        <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_fab1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
-            android:id="@+id/greeting_cate"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="12dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
 
-                android:text="Restaurant"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:contentDescription="@string/app_name" />
-
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
-            android:layout_below="@id/greeting_cate"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="12dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="Shopping"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:contentDescription="@string/app_name" />
-
-
-        </androidx.cardview.widget.CardView>
+            android:layout_marginBottom="30dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/add"
+            app:backgroundTint="@color/purple_500"
+            app:fabSize="normal" />
 
 
     </RelativeLayout>

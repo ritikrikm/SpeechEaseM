@@ -29,21 +29,18 @@ android:background="@color/white"
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:background="@drawable/bottom_navbg"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_navigation_menu"
-        android:elevation="2dp"
-
         android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
         android:layout_gravity="bottom"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bottom_navbg"
+        android:elevation="2dp"
         app:itemIconTint="@color/bottom_nav_color"
-        android:layout_margin="12dp"
-
-        >
-
-
-
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
