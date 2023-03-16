@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.speechease.Utils.Save;
+import com.example.speechease.Utils.SaveSelection;
 import com.example.speechease.fragment.Textspeech;
 import com.example.speechease.fragment.emojispeech;
 import com.example.speechease.fragment.template;
@@ -27,6 +31,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Dashboard extends AppCompatActivity {
@@ -50,6 +55,17 @@ public class Dashboard extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId()==R.id.engl){
+                    setLocal(Dashboard.this,"en");
+                    finish();
+                    startActivity(getIntent());
+                }
+                if(item.getItemId()==R.id.french){
+                    setLocal(Dashboard.this,"fr");
+                    finish();
+                    startActivity(getIntent());
+
+                }
                 if(item.getItemId()==R.id.logout) {
                     FirebaseAuth.getInstance().signOut();
                     //saving session
@@ -109,6 +125,14 @@ public class Dashboard extends AppCompatActivity {
         }
         backPressedTime = System.currentTimeMillis();
     }
+    public void setLocal(Activity activity, String langcode){
+        Locale locale = new Locale(langcode);
+        locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration,resources.getDisplayMetrics());
+    }
     private boolean haveNetworkConnection() {
         boolean haveConnectedWifi = false;
         boolean haveConnectedMobile = false;
@@ -132,4 +156,23 @@ public class Dashboard extends AppCompatActivity {
         fragmentTransaction.commitNow();
 
     }
+    public void SESSION(){
+        String selection = SaveSelection.read(getApplicationContext(), "selection", "en");
+        if(selection.equals("en")){
+
+            setLocal(Dashboard.this,"en");
+
+
+        }
+        else{
+
+            setLocal(Dashboard.this,"fr");
+
+
+        }
+        startActivity(getIntent());
+        finish();
+
+    }
+
 }

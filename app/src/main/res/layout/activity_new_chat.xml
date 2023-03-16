@@ -7,7 +7,13 @@
     android:background="#ECE5DD"
     tools:context=".fragment.NewChat">
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clr_btn"
+        android:layout_centerHorizontal="true"
+        android:text="@string/clear"
+        />
 
 
 

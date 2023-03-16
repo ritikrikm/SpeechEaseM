@@ -16,7 +16,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.speechease.Edit_cat;
 import com.example.speechease.Home_Login;
 import com.example.speechease.R;
 import com.example.speechease.Utils.Save;
@@ -76,16 +78,17 @@ public class template extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getItemId()==R.id.edit) {
 
-//                            Intent intent = new Intent(getApplicationContext(), Home_Login.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                            startActivity(intent);
+                            Intent intent = new Intent(getContext(), Edit_cat.class);
+                            intent.putExtra("key",model.getKey());
+
+                            startActivity(intent);
 
 
                         }
                         if(item.getItemId() == R.id.delete){
-//                            Intent intent = new Intent(getApplicationContext(), profile_activity.class);
-//
-//                            startActivity(intent);
+                            DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("TemplateCat").child(model.getKey());
+                            db.keepSynced(true);
+                            db.removeValue();
                         }
                         return false;
                     }

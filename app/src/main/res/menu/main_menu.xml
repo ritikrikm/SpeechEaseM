@@ -7,6 +7,16 @@
         android:title="@string/profile"
         />
     <item
+        android:id="@+id/engl"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="@string/english"
+        />
+    <item
+        android:id="@+id/french"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="@string/french"
+        />
+    <item
         android:id="@+id/logout"
         android:icon="@drawable/baseline_logout_24"
         android:title="@string/log_out"

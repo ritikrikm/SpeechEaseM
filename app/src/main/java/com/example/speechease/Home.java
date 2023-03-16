@@ -64,6 +64,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         number1 = findViewById(R.id.cnumber);
         //chatbot=findViewById( R.id.chatbot );
         ccp=findViewById( R.id.ccp );
+        ccp.setCountryForNameCode("CA");
 
         findViewById( R.id.go ).setOnClickListener( this );
 SESSION();

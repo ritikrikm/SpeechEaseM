@@ -229,7 +229,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="@string/login"
                 android:id="@+id/btn_signin"
                 android:textColor="#fff"
                 android:fontFamily="@font/montserrat"

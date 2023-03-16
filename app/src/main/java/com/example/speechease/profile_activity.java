@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.speechease.Utils.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 public class profile_activity extends AppCompatActivity {
     Spinner spinnerLanguages;
     TextView name,email,contact;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseAuth firebaseAuth;
+    String cg;
     Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class profile_activity extends AppCompatActivity {
         email = findViewById(R.id.email_profile);
         contact = findViewById(R.id.conta);
         btn = findViewById(R.id.upda_prof_btn);
+        firebaseAuth=FirebaseAuth.getInstance();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
@@ -54,6 +60,11 @@ public class profile_activity extends AppCompatActivity {
                     name.setText(n);
                     email.setText( n_one );
                     contact.setText(value.code+ n_two );
+                    if(value.getGender().equals("Male")){
+                        spinnerLanguages.setSelection(0);
+                    }
+                    else
+                        spinnerLanguages.setSelection(1);
                 }
 
             }
@@ -87,6 +98,7 @@ public class profile_activity extends AppCompatActivity {
                     myRef.keepSynced(true);
                     String text = spinnerLanguages.getSelectedItem().toString();
                     myRef.child(FirebaseAuth.getInstance().getUid()).child("gender").setValue(text);
+                    Toast.makeText(profile_activity.this,"Profile Updated",Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -94,5 +106,9 @@ public class profile_activity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+    }
 }

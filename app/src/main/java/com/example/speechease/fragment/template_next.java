@@ -1,5 +1,7 @@
 package com.example.speechease.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -19,7 +21,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.speechease.Edit_cat;
+import com.example.speechease.Edit_cat_next;
 import com.example.speechease.R;
+import com.example.speechease.Utils.User;
 import com.example.speechease.add_cat;
 import com.example.speechease.add_temp;
 import com.example.speechease.modelVH.internal_vh;
@@ -44,10 +49,11 @@ import java.util.Set;
 
 public class template_next extends AppCompatActivity implements TextToSpeech.OnInitListener {
     BucketRecyclerView recyclerView;
+    String gender;
     TextToSpeech text;
-    private FirebaseRecyclerOptions<template_md> options;
-    private DatabaseReference databaseReference;
-    private FirebaseRecyclerAdapter<template_md, temp_vh> adapter;
+     FirebaseRecyclerOptions<template_md> options;
+     DatabaseReference databaseReference;
+     FirebaseRecyclerAdapter<template_md, temp_vh> adapter;
     FirebaseAuth firebaseAuth;
 
     FloatingActionButton fab;
@@ -77,11 +83,15 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
             @Override
             protected void onBindViewHolder(@NonNull final temp_vh tv, int i, @NonNull final template_md md) {
                 tv.toolbar.inflateMenu(R.menu.menu_temp);
+
               tv.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
                   @Override
                   public boolean onMenuItemClick(MenuItem menuItem) {
                       if(menuItem.getItemId()==R.id.edit) {
+                          Intent intent = new Intent(getApplicationContext(), Edit_cat_next.class);
+                          intent.putExtra("key2",md.getKey2());
 
+                          startActivity(intent);
 //                            Intent intent = new Intent(getApplicationContext(), Home_Login.class);
 //                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                            startActivity(intent);
@@ -89,9 +99,9 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
 
                       }
                       if(menuItem.getItemId() == R.id.delete){
-//                            Intent intent = new Intent(getApplicationContext(), profile_activity.class);
-//
-//                            startActivity(intent);
+                          DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Template").child(md.getKey2());
+                          db.keepSynced(true);
+                          db.removeValue();
                       }
                       return false;
                   }
@@ -113,14 +123,57 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
                                     @Override
                                     public void onInit(int i) {
                                         if (i == TextToSpeech.SUCCESS) {
+
+
+
+
+//                                            Intent installIntent = new Intent();
+//                                installIntent.setAction(
+//                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+//                                startActivity(installIntent);
                                          
                                             Set<String> a=new HashSet<>();
-                                            a.add("male");//here you can give male if you want to select male voice.
+//                                            String lang = Locale.getDefault().;
+
                                             //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-                                            String l = String.valueOf(text.setLanguage(Locale.ENGLISH));
-                                            Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,"US"),400,200,true,a);
+String v_name;
+
+
+                                            String vname = null;
+                                            String l,c;
+                                            if(gender.equals("Male")){
+                                                l="fr";
+                                                c= "FR";
+                                                vname = "fr-FR-language";
+                                            }
+                                            else{
+
+                                                l="fr";
+                                                c= "CA";
+                                                vname = "fr-ca-x-caa-network";
+                                            }
+                                            Log.e("l and c",l+"_"+c+"_"+text.getVoice().getName());
+
+
+//                                            if(lang.equals("fr")){
+//                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));
+//                                                c = "FR";
+//                                            }
+//                                            else{
+//                                                l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
+//                                                c = "US";
+//                                            }
+
+
+
+                                            Voice v=new Voice(vname,new Locale(l,c),400,200,true,a);
+
+                                            String p = String.valueOf(text.getVoices());
+
+
+                                            Log.d("Hello",p);
                                             text.setVoice(v);
-                                            text.setSpeechRate(0.8f);
+                                            //text.setSpeechRate(0.8f);
 
 //                                            // int result = T2S.setLanguage(Locale.US);
 //                                            int result = text.setVoice(v);
@@ -130,6 +183,7 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
 //                                                Log.e("TTS", "This Language is not supported");
 //                                            } else {
                                                 // btnSpeak.setEnabled(true);
+
                                                 text.speak(md.getName(), TextToSpeech.QUEUE_FLUSH, null);
 //                                            }
 
@@ -203,6 +257,34 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
     protected void onStart(){
         super.onStart();
         adapter.startListening();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        // Read from the database
+        myRef.keepSynced(true);
+        myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    User value = dataSnapshot1.getValue(User.class);
+                    assert value != null;
+                    gender = value.getGender();
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     @Override

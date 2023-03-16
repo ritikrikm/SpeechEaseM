@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -50,6 +51,7 @@ import java.util.Set;
 public class SpeechText extends Fragment {
     BucketRecyclerView rv_internall;
     EditText mgetmessage;
+    Button clr_btn;
 
     ImageButton msendmessagebutton;
 
@@ -74,7 +76,8 @@ public class SpeechText extends Fragment {
     Calendar calendar;
     TextToSpeech text;
     SimpleDateFormat simpleDateFormat;
-    String key;
+    String key,h_key;
+
     MessagesAdapter messagesAdapter;
 
     ArrayList<Messages> messagesArrayList;
@@ -94,6 +97,8 @@ public class SpeechText extends Fragment {
         mgetmessage=v.findViewById(R.id.getmessage);
         msendmessagecardview=v.findViewById(R.id.carviewofsendmessage);
         msendmessagebutton=v.findViewById(R.id.imageviewsendmessage);
+        clr_btn = v.findViewById(R.id.clr_btn);
+
 
 
         messagesArrayList=new ArrayList<>();
@@ -111,6 +116,7 @@ public class SpeechText extends Fragment {
         simpleDateFormat=new SimpleDateFormat("hh:mm a");
          key = FirebaseDatabase.getInstance().getReference().child("msgs")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid() ).push().getKey();
+          h_key = key;
         msenderuid=firebaseAuth.getUid();
         mrecieveruid=FirebaseDatabase.getInstance().getReference().child("chats")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid() ).push().getKey();
@@ -120,27 +126,16 @@ public class SpeechText extends Fragment {
         senderroom=msenderuid+mrecieveruid;
         recieverroom=mrecieveruid+msenderuid;
 
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(firebaseAuth.getUid()+key);
-        messagesAdapter=new MessagesAdapter(getContext(),messagesArrayList);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messagesArrayList.clear();
-                for(DataSnapshot snapshot1:snapshot.getChildren())
-                {
-                    Messages messages=snapshot1.getValue(Messages.class);
-                    messagesArrayList.add(messages);
-                }
-                messagesAdapter.notifyDataSetChanged();
-            }
+                clr_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("chats");
+                        ref.child(firebaseAuth.getUid()).removeValue();
+                        getActivity().recreate();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+                    }
+                });
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,8 +157,26 @@ public class SpeechText extends Fragment {
                                 Set<String> a=new HashSet<>();
                                 a.add("male");//here you can give male if you want to select male voice.
                                 //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-                                String l = String.valueOf(text.setLanguage(Locale.ENGLISH));
-                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,"US"),400,200,true,a);
+//                               String country =Locale.getDefault().getCountry();
+                               String lang = Locale.getDefault().getLanguage();
+                                String l,c;
+                               if(lang.equals("fr")){
+                                  l  = String.valueOf(text.setLanguage(Locale.FRENCH));
+                                  c = "FR";
+                               }
+                               else{
+                                   l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
+                                   c = "US";
+                               }
+
+//                                Intent installIntent = new Intent();
+//                                installIntent.setAction(
+//                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+//                                startActivity(installIntent);
+
+
+
+                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,c),400,200,true,a);
                                 text.setVoice(v);
                                 text.setSpeechRate(0.8f);
 
@@ -196,13 +209,13 @@ public class SpeechText extends Fragment {
                     Date date=new Date();
                     currenttime=simpleDateFormat.format(calendar.getTime());
                     Messages messages=new Messages(firebaseAuth.getUid()+key,"Unknown",enteredmessage,firebaseAuth.getUid(),date.getTime(),currenttime);
-
+                    Log.e("Check",firebaseAuth.getUid()+key);
 
                     firebaseDatabase=FirebaseDatabase.getInstance();
 
 
                     firebaseDatabase.getReference().child("chats")
-                            .child(firebaseAuth.getUid()+key)
+                            .child(firebaseAuth.getUid())
 
                             .push().setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -227,32 +240,34 @@ public class SpeechText extends Fragment {
         // Inflate the layout for this fragment
         return v;
     }
-    private void updatenameoncloudfirestore() {
 
-        firebaseFirestore=FirebaseFirestore.getInstance();
-        //  CollectionReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getUid()).collection(firebaseAuth.getUid()+key);
-        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid()+key);
-
-        Map<String , Object> userdata=new HashMap<>();
-        userdata.put("name","Unknown");
-
-        userdata.put("uid",firebaseAuth.getUid());
-        userdata.put("status","Online");
-        userdata.put("key",key);
+    public void onStart() {
+        super.onStart();
 
 
-        documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+
+        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(firebaseAuth.getUid());
+
+        messagesAdapter=new MessagesAdapter(getContext(),messagesArrayList);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSuccess(Void aVoid) {
-                //Toast.makeText(getApplicationContext(),"Profile Update Succusfully",Toast.LENGTH_SHORT).show();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messagesArrayList.clear();
+                for(DataSnapshot snapshot1:snapshot.getChildren())
+                {
+                    Messages messages=snapshot1.getValue(Messages.class);
+                    messagesArrayList.add(messages);
+                }
+                messagesAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-    }
-    public void onStart() {
-        super.onStart();
-       // updatenameoncloudfirestore();
 
 //        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
 //        documentReference.update("status","Online").addOnSuccessListener(new OnSuccessListener<Void>() {

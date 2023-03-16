@@ -94,9 +94,25 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                                     notifyDataSetChanged();
                                 Set<String> a=new HashSet<>();
                                 a.add("male");//here you can give male if you want to select male voice.
-                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-                                String l = String.valueOf(text.setLanguage(Locale.ENGLISH));
-                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,"US"),400,200,true,a);
+                                String lang = Locale.getDefault().getLanguage();
+                                String l,c;
+                                if(lang.equals("fr")){
+                                    l  = String.valueOf(text.setLanguage(Locale.FRENCH));
+                                    c = "FR";
+                                }
+                                else{
+                                    l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
+                                    c = "US";
+                                }
+
+//                                Intent installIntent = new Intent();
+//                                installIntent.setAction(
+//                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+//                                startActivity(installIntent);
+
+
+
+                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,c),400,200,true,a);
                                 text.setVoice(v);
                                 text.setSpeechRate(0.8f);
 

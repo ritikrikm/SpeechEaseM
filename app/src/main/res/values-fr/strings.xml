@@ -53,5 +53,7 @@
     <string name="sender_message_display_here">Affichage du message de l\'expéditeur ici</string>
     <string name="edit">modifier</string>
     <string name="delete">Supprimer</string>
+    <string name="english">English</string>
+    <string name="french">française</string>
 
 </resources>
