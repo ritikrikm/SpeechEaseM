@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
 
-        android:text="SpeechEase"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="34dp"
+        android:textSize="34sp"
         android:textStyle="italic" />
 
 

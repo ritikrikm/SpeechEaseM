@@ -6,16 +6,16 @@
     <item
         android:id="@+id/textspeech"
         android:icon="@drawable/txtspeech"
-        android:title="Text-to-speech"
+        android:title="@string/text_to_speech"
      />
     <item
         android:id="@+id/template"
         android:icon="@drawable/prototype"
-        android:title="Templates"
+        android:title="@string/templates"
         />
     <item android:id="@+id/emoji"
         android:icon="@drawable/chat"
-        android:title="Emoji speech"
+        android:title="@string/emoji_speech"
         />
 
 </menu>

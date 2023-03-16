@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/app_name"
-                android:text="Hey, what are the pptions in menu"
+                android:text="@string/hey_what_are_the_options_in_menu"
                 android:textSize="20sp" />
 <Toolbar
     android:layout_width="wrap_content"

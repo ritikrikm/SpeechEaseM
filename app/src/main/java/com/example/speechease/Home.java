@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.speechease.Utils.Save;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,7 @@ import java.util.regex.Pattern;
 public class Home extends AppCompatActivity implements View.OnClickListener {
    // Button btnLogin;
     Button btnSignIn;
+    boolean session;
     Button go;
     private EditText emailId,password,number1,fname1;
     FirebaseAuth mFirebaseAuth;
@@ -64,7 +66,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         ccp=findViewById( R.id.ccp );
 
         findViewById( R.id.go ).setOnClickListener( this );
-
+SESSION();
         btnSignIn=findViewById(R.id.btn_signin);
 
         btnSignIn.setOnClickListener( new View.OnClickListener() {
@@ -82,6 +84,28 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         } );
+
+    }
+
+    public void SESSION(){
+        session= Boolean.valueOf( Save.read(getApplicationContext(),"session","false"));
+        if(session){
+            //here when user first or logout
+            //In here,intent to signup for first reg
+
+            Toast.makeText(this,"Already Logged In",Toast.LENGTH_LONG).show();
+            Intent signup=new Intent(getApplicationContext(),Dashboard.class);
+            startActivity(signup);
+
+            finish();
+        }
+        else{
+            //here when user logged in
+            //value here is true
+            //Toast.makeText(this,"ALREADY LOGGED IN",Toast.LENGTH_SHORT).show();
+
+
+        }
 
     }
 
@@ -189,8 +213,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
         else if(!PASSWORD_PATTERN.matcher(pwd).matches()){
-
-            Toast.makeText( getApplicationContext(),"1 Digit? \n 1 LowerCase? \n 1 UpperCase? \n 1 Special Character? \n least 6 character?",Toast.LENGTH_SHORT ).show();
+                Toast.makeText(getApplicationContext(),"Password does not match the given criteria",Toast.LENGTH_SHORT).show();
+//            Toast.makeText( getApplicationContext(),"1 Digit? \n 1 LowerCase? \n 1 UpperCase? \n 1 Special Character? \n least 6 character?",Toast.LENGTH_SHORT ).show();
             return false;
         }
 

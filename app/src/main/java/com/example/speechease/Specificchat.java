@@ -92,16 +92,13 @@ public class Specificchat extends AppCompatActivity {
           nid =i.getStringExtra("ntid");
           String name = i.getStringExtra("name");
           key = i.getStringExtra("key");
-        mnameofspecificuser=findViewById(R.id.Nameofspecificuser);
+
           mnameofspecificuser.setText(name);
 
         mgetmessage=findViewById(R.id.getmessage);
         msendmessagecardview=findViewById(R.id.carviewofsendmessage);
         msendmessagebutton=findViewById(R.id.imageviewsendmessage);
-        mtoolbarofspecificchat=findViewById(R.id.toolbarofspecificchat);
 
-
-        mbackbuttonofspecificchat=findViewById(R.id.backbuttonofspecificchat);
         mbackbuttonofspecificchat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

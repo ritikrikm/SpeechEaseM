@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.speechease.R;
@@ -36,11 +37,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-public class template_next extends AppCompatActivity {
+public class template_next extends AppCompatActivity implements TextToSpeech.OnInitListener {
     BucketRecyclerView recyclerView;
     TextToSpeech text;
     private FirebaseRecyclerOptions<template_md> options;
@@ -60,7 +62,7 @@ public class template_next extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         firebaseAuth= FirebaseAuth.getInstance();
-
+        text = new TextToSpeech(getApplicationContext(), this,"com.google.android.tts");
 
          i = getIntent();
         key = i.getStringExtra("key");
@@ -105,39 +107,60 @@ public class template_next extends AppCompatActivity {
                         public void onInit(int i) {
 
                             if(i!=TextToSpeech.ERROR){
-                                // To Choose language of speech
+
+
                                 text =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                                     @Override
                                     public void onInit(int i) {
+                                        if (i == TextToSpeech.SUCCESS) {
+                                         
+                                            Set<String> a=new HashSet<>();
+                                            a.add("male");//here you can give male if you want to select male voice.
+                                            //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                                            String l = String.valueOf(text.setLanguage(Locale.ENGLISH));
+                                            Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,"US"),400,200,true,a);
+                                            text.setVoice(v);
+                                            text.setSpeechRate(0.8f);
 
-                                        if(i!=TextToSpeech.ERROR){
-                                            // To Choose language of speech
-                                            text.setLanguage(Locale.UK);
-                                            text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
-                                            Log.d("UID",md.getUid());
+//                                            // int result = T2S.setLanguage(Locale.US);
+//                                            int result = text.setVoice(v);
+//
+//                                            if (result == TextToSpeech.LANG_MISSING_DATA
+//                                                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                                                Log.e("TTS", "This Language is not supported");
+//                                            } else {
+                                                // btnSpeak.setEnabled(true);
+                                                text.speak(md.getName(), TextToSpeech.QUEUE_FLUSH, null);
+//                                            }
+
+                                        } else {
+                                            Log.e("TTS", "Initilization Failed!");
                                         }
+//                                        if(i!=TextToSpeech.ERROR){
+//                                            // To Choose language of speech
+//                                            text.setLanguage(Locale.UK);
+//                                            Set<String> a=new HashSet<>();
+//                                        a.add("male");
+//                                            text.setVoice(new Voice("en-us-x-sfg#male_2-local",new Locale("en","US"),400,200,true,a));
+//                                            text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
+//                                            Log.d("UID",md.getUid());
+//                                        }
                                     }
                                 });
 //                                Set<String> a=new HashSet<>();
 //                                a.add("male");//here you can give male if you want to select male voice.
 //                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-//                                String s = String.valueOf(text.setLanguage(Locale.FRENCH));
-//                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale("en","US"),400,200,true,a);
+//                                String s = String.valueOf(text.setLanguage(Locale.US));
+//                                Voice v=new Voice("en-us-x-sfg#male_6-local",new Locale("en",s),400,200,true,a);
 //                                text.setVoice(v);
 //                                text.setSpeechRate(0.8f);
-
-                                // int result = T2S.setLanguage(Locale.US);
-//                                int result = text.setVoice(v);
 //
-//                                if (result == TextToSpeech.LANG_MISSING_DATA
-//                                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-//                                    Log.e("TTS", "This Language is not supported");
-//                                } else {
+//
 //                                    // btnSpeak.setEnabled(true);
 //                                    Log.e("TTS", "HI");
 ////                                    text.setLanguage(Locale.ENGLISH);
 //                                    text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
-//                                }
+                                }
 
 
 
@@ -145,7 +168,7 @@ public class template_next extends AppCompatActivity {
 //
 //                                text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
                             }
-                        }
+
                     });
             }
         });
@@ -180,6 +203,11 @@ public class template_next extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         adapter.startListening();
+    }
+
+    @Override
+    public void onInit(int i) {
+
     }
 
 //    private class TTSInit extends AsyncTask<Void, Void, Void> {

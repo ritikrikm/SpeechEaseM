@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sender Message Display Here "
+            android:text="@string/sender_message_display_here"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:paddingLeft="7dp"

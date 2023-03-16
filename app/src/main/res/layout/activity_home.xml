@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Password"
+                        android:text="@string/password"
                         android:textColor="#000"
                         android:textSize="16sp" />
 
@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Contact Number"
+                        android:text="@string/contact_number"
                         android:textColor="#000"
                         android:textSize="16sp" />
                     <LinearLayout
@@ -173,7 +173,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
-                            android:hint="You will recieve an OTP"
+                            android:hint="@string/you_will_recieve_an_otp"
 
                             />
 
@@ -202,7 +202,7 @@
                 android:id="@+id/go"
                 android:elevation="6dp"
                 android:background="@drawable/btn_gradient_style"
-                android:text="Register"
+                android:text="@string/register"
                 android:textColor="@color/white"
                 />
         </LinearLayout>
@@ -225,7 +225,7 @@
                 android:fontFamily="@font/montserrat"
                 android:layout_marginBottom="16dp"
                 android:layout_centerInParent="true"
-                android:text="Already Registered?"/>
+                android:text="@string/already_registered"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

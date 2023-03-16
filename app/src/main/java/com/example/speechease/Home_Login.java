@@ -83,6 +83,13 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
         progressBars.setVisibility(View.GONE);
 
         btnSignUp=findViewById(R.id.signup);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Home.class);
+                startActivity(intent);
+            }
+        });
         go=findViewById( R.id.go1 );
 
 

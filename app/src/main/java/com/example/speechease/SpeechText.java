@@ -1,25 +1,29 @@
-package com.example.speechease.fragment;
+package com.example.speechease;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.Voice;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.speechease.Messages;
-import com.example.speechease.MessagesAdapter;
-import com.example.speechease.R;
+import com.example.speechease.fragment.BucketRecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +33,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,11 +41,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 
-public class NewChat extends AppCompatActivity {
+
+public class SpeechText extends Fragment {
     BucketRecyclerView rv_internall;
     EditText mgetmessage;
 
@@ -65,41 +70,47 @@ public class NewChat extends AppCompatActivity {
     RecyclerView mmessagerecyclerview;
 
     String currenttime;
+
     Calendar calendar;
     TextToSpeech text;
     SimpleDateFormat simpleDateFormat;
-String key;
+    String key;
     MessagesAdapter messagesAdapter;
 
     ArrayList<Messages> messagesArrayList;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_chat);
+    public SpeechText() {
+        // Required empty public constructor
+    }
 
-        mgetmessage=findViewById(R.id.getmessage);
-        msendmessagecardview=findViewById(R.id.carviewofsendmessage);
-        msendmessagebutton=findViewById(R.id.imageviewsendmessage);
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v=inflater.inflate(R.layout.activity_new_chat,container,false);
+
+        mgetmessage=v.findViewById(R.id.getmessage);
+        msendmessagecardview=v.findViewById(R.id.carviewofsendmessage);
+        msendmessagebutton=v.findViewById(R.id.imageviewsendmessage);
 
 
         messagesArrayList=new ArrayList<>();
-        mmessagerecyclerview=findViewById(R.id.rv1);
+        mmessagerecyclerview=v.findViewById(R.id.rv1);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
         mmessagerecyclerview.setLayoutManager(linearLayoutManager);
-        messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
+        messagesAdapter=new MessagesAdapter(getContext(),messagesArrayList);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
         calendar=Calendar.getInstance();
         simpleDateFormat=new SimpleDateFormat("hh:mm a");
-        i = getIntent();
-         key = i.getStringExtra("key");
-
+         key = FirebaseDatabase.getInstance().getReference().child("msgs")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() ).push().getKey();
         msenderuid=firebaseAuth.getUid();
         mrecieveruid=FirebaseDatabase.getInstance().getReference().child("chats")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid() ).push().getKey();
@@ -110,8 +121,7 @@ String key;
         recieverroom=mrecieveruid+msenderuid;
 
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(firebaseAuth.getUid()+key);
-        messagesAdapter=new MessagesAdapter(getApplicationContext(),messagesArrayList);
-
+        messagesAdapter=new MessagesAdapter(getContext(),messagesArrayList);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,7 +141,6 @@ String key;
             }
         });
 
-       // myRef.FirebaseAuth.getInstance().getUid();.setValue(messages);
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,21 +148,44 @@ String key;
                 enteredmessage=mgetmessage.getText().toString();
                 if(enteredmessage.isEmpty())
                 {
-                    Toast.makeText(getApplicationContext(),"Enter message first",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Enter message first",Toast.LENGTH_SHORT).show();
                 }
 
                 else
 
                 {
-                    text =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    text =new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
                         @Override
                         public void onInit(int i) {
+                            if (i == TextToSpeech.SUCCESS) {
 
-                            if(i!=TextToSpeech.ERROR){
-                                // To Choose language of speech
-                                text.setLanguage(Locale.CANADA_FRENCH);
-                                text.speak(enteredmessage,TextToSpeech.QUEUE_FLUSH,null);
+                                Set<String> a=new HashSet<>();
+                                a.add("male");//here you can give male if you want to select male voice.
+                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                                String l = String.valueOf(text.setLanguage(Locale.ENGLISH));
+                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,"US"),400,200,true,a);
+                                text.setVoice(v);
+                                text.setSpeechRate(0.8f);
+
+//                                            // int result = T2S.setLanguage(Locale.US);
+//                                            int result = text.setVoice(v);
+//
+//                                            if (result == TextToSpeech.LANG_MISSING_DATA
+//                                                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                                                Log.e("TTS", "This Language is not supported");
+//                                            } else {
+                                // btnSpeak.setEnabled(true);
+                                text.speak(enteredmessage, TextToSpeech.QUEUE_FLUSH, null);
+//                                            }
+
+                            } else {
+                                Log.e("TTS", "Initilization Failed!");
                             }
+//                            if(i!=TextToSpeech.ERROR){
+//                                // To Choose language of speech
+//                                text.setLanguage(Locale.UK);
+//                                text.speak(enteredmessage,TextToSpeech.QUEUE_FLUSH,null);
+//                            }
                         }
                     });
 
@@ -175,7 +207,7 @@ String key;
                             .push().setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                        Log.e("HEY","HIII");
+                                    Log.e("HEY","HIII");
 
                                 }
                             });
@@ -192,13 +224,13 @@ String key;
             }
         });
 
-
-
+        // Inflate the layout for this fragment
+        return v;
     }
     private void updatenameoncloudfirestore() {
 
         firebaseFirestore=FirebaseFirestore.getInstance();
-      //  CollectionReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getUid()).collection(firebaseAuth.getUid()+key);
+        //  CollectionReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getUid()).collection(firebaseAuth.getUid()+key);
         DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid()+key);
 
         Map<String , Object> userdata=new HashMap<>();
@@ -218,9 +250,9 @@ String key;
         });
 
     }
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-        updatenameoncloudfirestore();
+       // updatenameoncloudfirestore();
 
 //        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
 //        documentReference.update("status","Online").addOnSuccessListener(new OnSuccessListener<Void>() {

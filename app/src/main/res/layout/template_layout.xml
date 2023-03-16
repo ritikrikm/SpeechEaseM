@@ -29,7 +29,7 @@
             android:layout_margin="10dp"
             android:contentDescription="@string/app_name"
             android:gravity="center"
-            android:text="Shopping"
+            android:text="@string/shopping"
             android:textSize="24sp" />
         <androidx.appcompat.widget.Toolbar
             android:layout_width="wrap_content"

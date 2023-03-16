@@ -71,7 +71,7 @@ public class Dashboard extends AppCompatActivity {
         if(!haveNetworkConnection()){
             Toast.makeText(Dashboard.this,"No Network Connection",Toast.LENGTH_LONG).show();
         }
-        final Textspeech text=new Textspeech();
+        final SpeechText text=new SpeechText();
         final template template=new template();
         final emojispeech emojispeech=new emojispeech();
 

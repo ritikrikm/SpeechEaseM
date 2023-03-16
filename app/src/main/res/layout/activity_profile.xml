@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card1"
                     android:layout_centerInParent="true"
-                    android:text="Update" />
+                    android:text="@string/update" />
 
                 <TextView
                     android:id="@+id/title_001"
@@ -42,7 +42,7 @@
                     android:textColor="#000"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    android:text="Profile"
+                    android:text="@string/profile"
                     android:textAlignment="center"/>
 
 
@@ -84,7 +84,7 @@ android:layout_below="@id/title_001"
                                     android:gravity="center|start"
                                     android:fontFamily="@font/montserrat"
                                     android:textColor="#000"
-                                    android:text="Name"
+                                    android:text="@string/name"
                                     android:textStyle="bold"
                                     android:textSize="18sp" />
                             <TextView
@@ -106,7 +106,7 @@ android:layout_below="@id/title_001"
                                 android:gravity="center|start"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="#000"
-                                android:text="Email"
+                                android:text="@string/emailid"
                                 android:textStyle="bold"
                                 android:textSize="18sp" />
                             <TextView
@@ -128,7 +128,7 @@ android:layout_below="@id/title_001"
                                 android:gravity="center|start"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="#000"
-                                android:text="Contact Number"
+                                android:text="@string/contact_number"
                                 android:textStyle="bold"
                                 android:textSize="18sp" />
                             <TextView
@@ -150,7 +150,7 @@ android:layout_below="@id/title_001"
                                 android:layout_below="@id/conta"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="#000"
-                                android:text="Gender"
+                                android:text="@string/gender"
                                 android:textStyle="bold"
                                 android:textSize="18sp" />
                             <Spinner

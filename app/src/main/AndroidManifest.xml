@@ -14,8 +14,9 @@
         <activity
             android:name=".add_cat"
             android:exported="false" />
-        <activity android:name=".add_temp"
-            android:exported="false"/>
+        <activity
+            android:name=".add_temp"
+            android:exported="false" />
         <activity
             android:name=".profile_activity"
             android:exported="false" />

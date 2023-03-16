@@ -5,6 +5,7 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.Voice;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class MessagesAdapter extends RecyclerView.Adapter {
 
@@ -87,14 +90,37 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
                         @Override
                         public void onInit(int i) {
+                            if (i == TextToSpeech.SUCCESS) {
+                                    notifyDataSetChanged();
+                                Set<String> a=new HashSet<>();
+                                a.add("male");//here you can give male if you want to select male voice.
+                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                                String l = String.valueOf(text.setLanguage(Locale.ENGLISH));
+                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,"US"),400,200,true,a);
+                                text.setVoice(v);
+                                text.setSpeechRate(0.8f);
 
-                            if(i!=TextToSpeech.ERROR){
-                                // To Choose language of speech
-                                notifyDataSetChanged();
-                                text.setLanguage(Locale.UK);
-                                text.speak(messages.getMessage(),TextToSpeech.QUEUE_FLUSH,null);
-                                
+//                                            // int result = T2S.setLanguage(Locale.US);
+//                                            int result = text.setVoice(v);
+//
+//                                            if (result == TextToSpeech.LANG_MISSING_DATA
+//                                                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                                                Log.e("TTS", "This Language is not supported");
+//                                            } else {
+                                // btnSpeak.setEnabled(true);
+                                text.speak(messages.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
+//                                            }
+
+                            } else {
+                                Log.e("TTS", "Initilization Failed!");
                             }
+//                            if(i!=TextToSpeech.ERROR){
+//                                // To Choose language of speech
+//                                notifyDataSetChanged();
+//                                text.setLanguage(Locale.CANADA_FRENCH);
+//                                text.speak(messages.getMessage(),TextToSpeech.QUEUE_FLUSH,null);
+//
+//                            }
 
 
                         }
