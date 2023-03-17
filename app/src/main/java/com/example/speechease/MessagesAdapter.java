@@ -54,7 +54,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        notifyDataSetChanged();
+
         if(viewType==ITEM_SEND)
         {
             View view= LayoutInflater.from(context).inflate(R.layout.senderchatlayout,parent,false);
@@ -162,8 +162,8 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                                 }
                                 else if(gender.equals("Female") && selection.equals("en")){
                                     l="en";
-                                    c= "UK";
-                                    vname = "en-UK-language";
+                                    c= "US";
+                                    vname = "en-US-language";
                                 }
 
 

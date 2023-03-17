@@ -57,11 +57,13 @@ public class Dashboard extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.engl){
                     setLocal(Dashboard.this,"en");
+                    SaveSelection.save(getApplicationContext(), "selection", "true");
                     finish();
                     startActivity(getIntent());
                 }
                 if(item.getItemId()==R.id.french){
                     setLocal(Dashboard.this,"fr");
+                    SaveSelection.save(getApplicationContext(), "selection", "false");
                     finish();
                     startActivity(getIntent());
 

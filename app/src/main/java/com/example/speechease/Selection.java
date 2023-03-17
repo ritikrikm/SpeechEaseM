@@ -30,7 +30,7 @@ Button fre;
             @Override
             public void onClick(View view) {
                 setLocal(Selection.this,"en");
-                SaveSelection.save(getApplicationContext(), "selection", "en");
+                SaveSelection.save(getApplicationContext(), "selection", "true");
                 finish();
                 Intent intent = new Intent(Selection.this, Home.class);
                 startActivity(intent);
@@ -42,7 +42,7 @@ Button fre;
             @Override
             public void onClick(View view) {
                 setLocal(Selection.this,"fr");
-                SaveSelection.save(getApplicationContext(), "selection", "fr");
+                SaveSelection.save(getApplicationContext(), "selection", "false");
                 finish();
                 Intent intent = new Intent(Selection.this, Home.class);
                 startActivity(intent);

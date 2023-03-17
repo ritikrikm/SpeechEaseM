@@ -24,6 +24,7 @@ import android.widget.Toolbar;
 import com.example.speechease.Edit_cat;
 import com.example.speechease.Edit_cat_next;
 import com.example.speechease.R;
+import com.example.speechease.Utils.Save;
 import com.example.speechease.Utils.SaveSelection;
 import com.example.speechease.Utils.User;
 import com.example.speechease.add_cat;
@@ -142,29 +143,30 @@ String v_name;
 
                                             String vname = null;
                                             String l = null,c = null;
-                                            String selection = SaveSelection.read(getApplicationContext(), "selection", "en");
-                                            if(gender.equals("Male") && selection.equals("fr")){
+                                           boolean selection=  Boolean.valueOf( Save.read(getApplicationContext(),"selection","true"));
+
+                                            if(gender.equals("Male") && (!selection)){
                                                 l="fr";
                                                 c= "FR";
                                                 vname = "fr-FR-language";
                                             }
-                                            else if(gender.equals("Female") && selection.equals("fr")){
+                                            else if(gender.equals("Female") && (!selection)){
                                                 l="fr";
                                                 c= "CA";
                                                 vname = "fr-CA-language";
                                             }
-                                            else if(gender.equals("Male") && selection.equals("en")){
+                                            else if(gender.equals("Male")){
                                                 l="en";
                                                 c= "US";
                                                 vname = "en-US-language";
                                             }
-                                            else if(gender.equals("Female") && selection.equals("en")){
+                                            else if(gender.equals("Female")){
                                                 l="en";
-                                                c= "UK";
-                                                vname = "en-UK-language";
+                                                c= "US";
+                                                vname = "en-US-language";
                                             }
 
-
+            Log.e("this",l+c+vname+selection+gender);
 //                                            if(lang.equals("fr")){
 //                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));
 //                                                c = "FR";
@@ -181,7 +183,7 @@ String v_name;
                                             String p = String.valueOf(text.getVoices());
 
 
-                                            Log.d("Hello",p);
+//                                            Log.d("Hello",p);
                                             text.setVoice(v);
                                             //text.setSpeechRate(0.8f);
 

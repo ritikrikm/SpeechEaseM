@@ -4,7 +4,7 @@
     <string name="sign_up">S\'inscrire</string>
     <string name="full_name">Nom et prénom</string>
     <string name="your_name">Votre nom</string>
-    <string name="email">Email</string>
+    <string name="email">E-Mail Adresse</string>
     <string name="your_email_id">Votre adresse e-mail</string>
     <string name="input_error_name">nom requis</string>
     <string name="input_error_email">email requis</string>
@@ -12,6 +12,7 @@
     <string name="input_error_email_invalid">entrer un email valide</string>
     <string name="hello_blank_fragment">Bonjour fragment vierge</string>
     <string name="add_category">Ajouter une catégorie</string>
+    <string name="add_template">Ajouter un modèle</string>
     <string name="category_name">Catégorie Nom</string>
     <string name="add">AJOUTER</string>
     <string name="enter_email_id">Entrer un email valide</string>
@@ -33,6 +34,7 @@
     <string name="type_a_message">Tapez un message</string>
     <string name="profile">Profil</string>
     <string name="name">N</string>
+    <string name="emailid">E-Mail Adresse</string>
     <string name="gender">Genre</string>
     <string name="check_email">Vérifier l\'e-mail</string>
     <string name="enter_the_otp">Entrer l\'OTP</string>
@@ -53,7 +55,27 @@
     <string name="sender_message_display_here">Affichage du message de l\'expéditeur ici</string>
     <string name="edit">modifier</string>
     <string name="delete">Supprimer</string>
+    <string name="empty">Le nom est vide</string>
+    <string name="tempname">Nom du modèle</string>
+    <string name="back">Appuyez à nouveau pour quitter</string>
+    <string name="check">Veuillez vérifier votre e-Mail adresse enregistré</string>
+    <string name="network">Pas de connexion au réseau</string>
+    <string name="edit_temp">Modifier le modèle</string>
+    <string name="already">Déjà connecté</string>
+    <string name="exist">L\'utilisateur ayant ce numéro de téléphone existe déjà</string>
+    <string name="required">Mot de passe requis</string>
+    <string name="characters">Le mot de passe doit comporter au moins 6 caractères</string>
+    <string name="match">Le mot de passe ne correspond pas aux critères donnés</string>
+    <string name="ph">Veuillez saisir votre numéro de téléphone</string>
+    <string name="updated">Mise à jour</string>
+    <string name="field">Les champs sont vides !</string>
+    <string name="wrong">Quelque chose s\'est mal passé !!</string>
+    <string name="not_verify">Email non vérifié</string>
+    <string name="name_updated">Nom mis à jour</string>
+    <string name="pu">" Profil mis à jour"</string>
+    <string name="error_later">Erreur, veuillez réessayer plus tard</string>
     <string name="english">English</string>
-    <string name="french">française</string>
+    <string name="french">Française</string>
+    <string name="clear">Claire</string>
 
 </resources>

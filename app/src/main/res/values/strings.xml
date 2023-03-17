@@ -33,7 +33,7 @@
     <string name="type_a_message">Type a message</string>
     <string name="profile">Profile</string>
     <string name="name">Name</string>
-    <string name="emailid" translatable="false">Email</string>
+    <string name="emailid">Email</string>
     <string name="gender">Gender</string>
     <string name="check_email">Check Email</string>
     <string name="enter_the_otp">Enter The OTP</string>
@@ -52,7 +52,7 @@
     <string name="shopping" translatable="false">Shopping</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="add">Add Template</string>
+    <string name="add_template">Add Template</string>
     <string name="empty">Name is empty</string>
     <string name="tempname">Template Name</string>
     <string name="back">Press back again to exit</string>
@@ -60,11 +60,11 @@
     <string name="network">No Network Connection</string>
     <string name="edit_temp">Edit Template</string>
     <string name="already">Already Logged In</string>
-    <string name="exist">User on this phone number already exists</string>
+    <string name="exist">User with this phone number already exists</string>
     <string name="required">Password Required</string>
     <string name="characters">Password should be least 6 characters long</string>
     <string name="match">Password does not match the given criteria</string>
-    <string name="ph">Please Enter Your Numbers</string>
+    <string name="ph">Please Enter Your Phone Number</string>
     <string name="updated">Updated</string>
 
     <string name="field">Fields Are Empty!</string>
@@ -82,6 +82,6 @@
     </string-array>
 
     <string name="english">English</string>
-    <string name="french">française</string>
+    <string name="french">Française</string>
     <string name="clear">Clear</string>
 </resources>
