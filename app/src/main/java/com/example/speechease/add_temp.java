@@ -31,7 +31,7 @@ public class add_temp extends AppCompatActivity {
         add_temp = findViewById(R.id.add_temp);
         name = findViewById(R.id.upcate);
         add = findViewById(R.id.addbtn);
-        add_temp.setText(R.string.add);
+        add_temp.setText(R.string.add_template);
         name.setHint(R.string.tempname);
         i = getIntent();
         key = i.getStringExtra("key");

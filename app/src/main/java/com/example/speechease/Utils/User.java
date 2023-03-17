@@ -8,6 +8,7 @@ public class User {
     public String uid;
     public String password;
     public String gender;
+    String coun;
 
 public String  code;
 
@@ -15,9 +16,10 @@ public String  code;
 
     }
 
-    public User(String gender,String name, String email, String contactn, String uid, String password, String code) {
+    public User(String gender,String name, String email, String contactn, String uid, String password, String code,String coun) {
         this.gender = gender;
         this.name = name;
+        this.coun =coun;
         this.email = email;
 this.code=code;
         this.contactn = contactn;
@@ -27,6 +29,14 @@ this.code=code;
         this.password = password;
 
 
+    }
+
+    public String getCoun() {
+        return coun;
+    }
+
+    public void setCoun(String coun) {
+        this.coun = coun;
     }
 
     public String getGender() {

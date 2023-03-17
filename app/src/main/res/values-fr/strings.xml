@@ -74,8 +74,16 @@
     <string name="name_updated">Nom mis à jour</string>
     <string name="pu">" Profil mis à jour"</string>
     <string name="error_later">Erreur, veuillez réessayer plus tard</string>
+    <string name="happy">Je suis content</string>
+    <string name="sad">je suis triste</string>
     <string name="english">English</string>
     <string name="french">Française</string>
     <string name="clear">Claire</string>
+    <string name="angry">Je suis en colère</string>
+    <string name="cool">cool</string>
+    <string name="cry">Je pleure</string>
+    <string name="think">Je suis en train de penser</string>
+    <string name="atb">Meilleurs voeux</string>
+    <string name="laugh">rire</string>
 
 </resources>

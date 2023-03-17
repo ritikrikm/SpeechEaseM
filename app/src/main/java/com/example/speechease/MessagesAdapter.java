@@ -38,6 +38,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     ArrayList<Messages> messagesArrayList;
     TextToSpeech text;
     String gender;
+    String country;
 
 
     int ITEM_SEND=1;
@@ -95,6 +96,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                     User value = dataSnapshot1.getValue(User.class);
                     assert value != null;
                     gender = value.getGender();
+                    country = value.getCoun();
 
 
                 }
@@ -139,33 +141,30 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 //                                            String lang = Locale.getDefault().;
 
                                 //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-                                String v_name;
-
-
                                 String vname = null;
                                 String l = null,c = null;
-                                @SuppressLint("RestrictedApi") String selection = SaveSelection.read(getApplicationContext(), "selection", "en");
-                                if(gender.equals("Male") && selection.equals("fr")){
+//                                           boolean selection=  Boolean.valueOf( Save.read(getApplicationContext(),"selection","true"));
+
+                                if(gender.equals("Male") && (country.equals("fr"))){
                                     l="fr";
                                     c= "FR";
                                     vname = "fr-FR-language";
                                 }
-                                else if(gender.equals("Female") && selection.equals("fr")){
+                                else if(gender.equals("Female") && (country.equals("fr"))){
                                     l="fr";
                                     c= "CA";
                                     vname = "fr-CA-language";
                                 }
-                                else if(gender.equals("Male") && selection.equals("en")){
+                                else if(gender.equals("Male") && country.equals("en")){
                                     l="en";
                                     c= "US";
                                     vname = "en-US-language";
                                 }
-                                else if(gender.equals("Female") && selection.equals("en")){
+                                else if(gender.equals("Female")&& country.equals("en")){
                                     l="en";
-                                    c= "US";
-                                    vname = "en-US-language";
+                                    c= "GB";
+                                    vname = "en-GB-language";
                                 }
-
 
 //                                            if(lang.equals("fr")){
 //                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));

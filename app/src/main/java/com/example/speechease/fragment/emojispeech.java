@@ -29,8 +29,8 @@ import com.example.speechease.R;
 public class emojispeech extends Fragment {
 
     GridView gridView;
-    String[] emojis = {"happy", "sad", "laugh", "angry", "all the best", "cool", "cry", "think"};
-    int[] emojiImages = {R.drawable.happy, R.drawable.sad, R.drawable.laugh, R.drawable.angry, R.drawable.atb, R.drawable.cool, R.drawable.cry, R.drawable.think};
+    String[] emojis = {"happy", "sad", "laugh", "angry", "all the best", "excited", "like", "think"};
+    int[] emojiImages = {R.drawable.happy, R.drawable.sad, R.drawable.laugh, R.drawable.angry, R.drawable.atb, R.drawable.cool, R.drawable.like, R.drawable.think};
 
     public emojispeech() {
         // Required empty public constructor

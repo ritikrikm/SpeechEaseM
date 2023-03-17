@@ -35,18 +35,10 @@
         <activity
             android:name=".fragment.template_next"
             android:exported="false" />
-        <activity
-            android:name=".NameChange"
-            android:exported="false" />
-        <activity
-            android:name=".fragment.NewChat"
-            android:exported="false" />
-        <activity
-            android:name=".Specificchat"
-            android:exported="false" />
-        <activity
-            android:name=".ChatActivity"
-            android:exported="false" />
+
+
+
+
         <activity
             android:name=".Change_Pass"
             android:exported="false" />

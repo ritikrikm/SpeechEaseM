@@ -75,6 +75,15 @@
     <string name="pu">Profile Updated</string>
     <string name="error_later">Error,Please try again later</string>
 
+    <string name="happy">I am happy</string>
+    <string name="sad">I am sad</string>
+    <string name="laugh">laugh</string>
+    <string name="angry">I am angry</string>
+    <string name="cool">cool</string>
+    <string name="cry">"I am crying "</string>
+    <string name="think">I am thinking</string>
+    <string name="atb">All the best to you</string>
+
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>

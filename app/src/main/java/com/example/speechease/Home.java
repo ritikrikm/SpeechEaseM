@@ -36,6 +36,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth mFirebaseAuth;
    // ImageView chatbot;
     private CountryCodePicker ccp;
+    String country;
     private ProgressBar progressBars;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -57,6 +58,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         mFirebaseAuth = FirebaseAuth.getInstance();
         progressBars = findViewById(R.id.progressBar2);
         progressBars.setVisibility(View.GONE);
+        Intent intent = getIntent();
+         country = intent.getStringExtra("country");
 
         emailId = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -155,6 +158,7 @@ SESSION();
                                 intent.putExtra( "password", pwd );
                                 intent.putExtra( "code", phonenumber );
                                 intent.putExtra( "number", number );
+                                intent.putExtra( "country", country );
 
                                 startActivity( intent );
 
