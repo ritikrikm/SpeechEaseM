@@ -1,13 +1,24 @@
 package com.example.speechease.fragment;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.speechease.PopOutActivity;
 import com.example.speechease.R;
 
 /**
@@ -17,33 +28,18 @@ import com.example.speechease.R;
  */
 public class emojispeech extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    GridView gridView;
+    String[] emojis = {"happy", "sad", "laugh", "angry", "all the best", "cool", "cry", "think"};
+    int[] emojiImages = {R.drawable.happy, R.drawable.sad, R.drawable.laugh, R.drawable.angry, R.drawable.atb, R.drawable.cool, R.drawable.cry, R.drawable.think};
 
     public emojispeech() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment emojispeech.
-     */
-    // TODO: Rename and change types and number of parameters
     public static emojispeech newInstance(String param1, String param2) {
         emojispeech fragment = new emojispeech();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,16 +47,64 @@ public class emojispeech extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_emojispeech, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_emojispeech, container, false);
+
+        gridView = inflate.findViewById(R.id.gridview);
+        CustomAdapter customAdapter = new CustomAdapter();
+        gridView.setAdapter(customAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                @SuppressLint("RestrictedApi") Intent intent = new Intent(getApplicationContext(), PopOutActivity.class);
+//                intent.putExtra("name", emojis[i]);
+                String ab = emojis[i];
+                intent.putExtra("image", emojiImages[i]);
+                intent.putExtra("i", ab);
+                Log.e("CHeck", ab);
+                startActivity(intent);
+            }
+        });
+
+
+
+        return inflate;
+    }
+
+    private class CustomAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return emojiImages.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View view1 = getLayoutInflater().inflate(R.layout.row_data, null);
+
+            TextView name = view1.findViewById(R.id.emoji);
+            ImageView image = view1.findViewById(R.id.images);
+
+            name.setText(emojis[i]);
+            image.setImageResource(emojiImages[i]);
+            return view1;
+        }
     }
 }

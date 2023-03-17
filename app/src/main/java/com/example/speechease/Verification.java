@@ -164,7 +164,7 @@ public class Verification extends AppCompatActivity {
 
             signInWithPhoneAuthCredential(credential);
         }catch (Exception e){ //ss
-            Toast toast = Toast.makeText(getApplicationContext(), "Error,Please try again lator", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.error_later, Toast.LENGTH_SHORT);
             toast.setGravity( Gravity.CENTER,0,0);
             toast.show();
         }

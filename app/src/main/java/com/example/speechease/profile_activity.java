@@ -98,7 +98,7 @@ public class profile_activity extends AppCompatActivity {
                     myRef.keepSynced(true);
                     String text = spinnerLanguages.getSelectedItem().toString();
                     myRef.child(FirebaseAuth.getInstance().getUid()).child("gender").setValue(text);
-                    Toast.makeText(profile_activity.this,"Profile Updated",Toast.LENGTH_LONG).show();
+                    Toast.makeText(profile_activity.this,R.string.pu,Toast.LENGTH_LONG).show();
 
                 }
             }

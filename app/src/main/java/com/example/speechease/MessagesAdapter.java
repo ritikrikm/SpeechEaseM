@@ -1,5 +1,6 @@
 package com.example.speechease;
 
+import static android.content.ContentValues.TAG;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
@@ -17,7 +18,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.speechease.Utils.SaveSelection;
+import com.example.speechease.Utils.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +37,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList<Messages> messagesArrayList;
     TextToSpeech text;
+    String gender;
 
 
     int ITEM_SEND=1;
@@ -45,7 +54,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-
+        notifyDataSetChanged();
         if(viewType==ITEM_SEND)
         {
             View view= LayoutInflater.from(context).inflate(R.layout.senderchatlayout,parent,false);
@@ -70,7 +79,34 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
         Messages messages=messagesArrayList.get(position);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        // Read from the database
+        myRef.keepSynced(true);
+        myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    User value = dataSnapshot1.getValue(User.class);
+                    assert value != null;
+                    gender = value.getGender();
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
 
         if(holder.getClass()==SenderViewHolder.class)
@@ -92,29 +128,64 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                         public void onInit(int i) {
                             if (i == TextToSpeech.SUCCESS) {
                                     notifyDataSetChanged();
-                                Set<String> a=new HashSet<>();
-                                a.add("male");//here you can give male if you want to select male voice.
-                                String lang = Locale.getDefault().getLanguage();
-                                String l,c;
-                                if(lang.equals("fr")){
-                                    l  = String.valueOf(text.setLanguage(Locale.FRENCH));
-                                    c = "FR";
-                                }
-                                else{
-                                    l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
-                                    c = "US";
-                                }
 
-//                                Intent installIntent = new Intent();
+
+//                                            Intent installIntent = new Intent();
 //                                installIntent.setAction(
 //                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
 //                                startActivity(installIntent);
 
+                                Set<String> a=new HashSet<>();
+//                                            String lang = Locale.getDefault().;
+
+                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                                String v_name;
 
 
-                                Voice v=new Voice("en-us-x-sfg#male_2-local",new Locale(l,c),400,200,true,a);
+                                String vname = null;
+                                String l = null,c = null;
+                                @SuppressLint("RestrictedApi") String selection = SaveSelection.read(getApplicationContext(), "selection", "en");
+                                if(gender.equals("Male") && selection.equals("fr")){
+                                    l="fr";
+                                    c= "FR";
+                                    vname = "fr-FR-language";
+                                }
+                                else if(gender.equals("Female") && selection.equals("fr")){
+                                    l="fr";
+                                    c= "CA";
+                                    vname = "fr-CA-language";
+                                }
+                                else if(gender.equals("Male") && selection.equals("en")){
+                                    l="en";
+                                    c= "US";
+                                    vname = "en-US-language";
+                                }
+                                else if(gender.equals("Female") && selection.equals("en")){
+                                    l="en";
+                                    c= "UK";
+                                    vname = "en-UK-language";
+                                }
+
+
+//                                            if(lang.equals("fr")){
+//                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));
+//                                                c = "FR";
+//                                            }
+//                                            else{
+//                                                l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
+//                                                c = "US";
+//                                            }
+
+
+
+                                Voice v=new Voice(vname,new Locale(l,c),400,200,true,a);
+
+                                String p = String.valueOf(text.getVoices());
+
+
+                                Log.d("Hello",p);
                                 text.setVoice(v);
-                                text.setSpeechRate(0.8f);
+                                //text.setSpeechRate(0.8f);
 
 //                                            // int result = T2S.setLanguage(Locale.US);
 //                                            int result = text.setVoice(v);
@@ -124,6 +195,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 //                                                Log.e("TTS", "This Language is not supported");
 //                                            } else {
                                 // btnSpeak.setEnabled(true);
+
                                 text.speak(messages.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
 //                                            }
 
@@ -242,3 +314,5 @@ class speaker extends RecyclerView.ViewHolder{
 
 
 }
+
+

@@ -94,7 +94,7 @@ SESSION();
             //here when user first or logout
             //In here,intent to signup for first reg
 
-            Toast.makeText(this,"Already Logged In",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.already,Toast.LENGTH_LONG).show();
             Intent signup=new Intent(getApplicationContext(),Dashboard.class);
             startActivity(signup);
 
@@ -139,7 +139,7 @@ SESSION();
                             if (dataSnapshot.getValue() != null){
                                 progressBars.setVisibility(View.GONE);
                                 findViewById(R.id.go).setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(),"User on this phone number already exists",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),R.string.exist,Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 final String email = emailId.getText().toString().trim();
@@ -206,15 +206,15 @@ SESSION();
             return false;
         }
         else if(pwd.isEmpty()){
-            Toast.makeText( getApplicationContext(),"Password Required",Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(),R.string.required,Toast.LENGTH_SHORT ).show();
             return false;
         }
         else if (pwd.length() < 6 ) {
-            Toast.makeText( getApplicationContext(),"Password should be least 6 characters long",Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(),R.string.characters,Toast.LENGTH_SHORT ).show();
             return false;
         }
         else if(!PASSWORD_PATTERN.matcher(pwd).matches()){
-                Toast.makeText(getApplicationContext(),"Password does not match the given criteria",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.match,Toast.LENGTH_SHORT).show();
 //            Toast.makeText( getApplicationContext(),"1 Digit? \n 1 LowerCase? \n 1 UpperCase? \n 1 Special Character? \n least 6 character?",Toast.LENGTH_SHORT ).show();
             return false;
         }
@@ -222,7 +222,7 @@ SESSION();
 
 
         else if(number.isEmpty()){
-            number1.setError("Please Enter Your Number");
+            number1.setError(getString(R.string.ph));
             number1.requestFocus();
             return false;
         }

@@ -85,7 +85,7 @@ public class Dashboard extends AppCompatActivity {
             }
         });
         if(!haveNetworkConnection()){
-            Toast.makeText(Dashboard.this,"No Network Connection",Toast.LENGTH_LONG).show();
+            Toast.makeText(Dashboard.this,R.string.network,Toast.LENGTH_LONG).show();
         }
         final SpeechText text=new SpeechText();
         final template template=new template();
@@ -120,7 +120,7 @@ public class Dashboard extends AppCompatActivity {
             backToast.cancel();
             finish();
         } else {
-            backToast = Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast = Toast.makeText(getBaseContext(), R.string.back, Toast.LENGTH_SHORT);
             backToast.show();
         }
         backPressedTime = System.currentTimeMillis();
@@ -175,4 +175,9 @@ public class Dashboard extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
 }

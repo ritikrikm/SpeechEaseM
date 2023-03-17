@@ -79,7 +79,7 @@ public class Change_Pass extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(Change_Pass.this,"Please Check your Registered Email",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Change_Pass.this,R.string.check,Toast.LENGTH_LONG).show();
 
                                 }
                                 else{
@@ -107,7 +107,7 @@ public class Change_Pass extends AppCompatActivity {
             super.onBackPressed();
             finish();
         } else {
-            backToast = Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast = Toast.makeText(getBaseContext(), R.string.back, Toast.LENGTH_SHORT);
             backToast.show();
 
 

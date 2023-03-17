@@ -37,9 +37,9 @@ public class Edit_cat_next extends AppCompatActivity {
         add_temp = findViewById(R.id.add_temp);
         name = findViewById(R.id.upcate);
         add = findViewById(R.id.addbtn);
-        add_temp.setText("Edit Template");
+        add_temp.setText(R.string.edit_temp);
 
-        add.setText("Update");
+        add.setText(R.string.update);
         i = getIntent();
         key = i.getStringExtra("key2");
         FirebaseDatabase database = FirebaseDatabase.getInstance()
@@ -78,14 +78,14 @@ public class Edit_cat_next extends AppCompatActivity {
                     db.child("uid").setValue(FirebaseAuth.getInstance().getUid());
                     db.child("key2").setValue(key);
 
-                    Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.updated,Toast.LENGTH_SHORT).show();
                     finish();
 
 
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Name is Empty",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.empty,Toast.LENGTH_SHORT).show();
                 }
             }
         });

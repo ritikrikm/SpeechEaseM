@@ -36,8 +36,8 @@ public class Edit_cat extends AppCompatActivity {
 
         addbtn= findViewById(R.id.addbtn);
         textView = findViewById(R.id.add_temp);
-        textView.setText("Edit Template");
-        addbtn.setText("Update");
+        textView.setText(R.string.edit_temp);
+        addbtn.setText(R.string.update);
         Intent i = getIntent();
         key = i.getStringExtra("key");
         FirebaseDatabase database = FirebaseDatabase.getInstance()
@@ -82,7 +82,7 @@ public class Edit_cat extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Name is Empty",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.empty,Toast.LENGTH_SHORT).show();
                 }
             }
         });

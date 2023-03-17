@@ -76,7 +76,7 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
             }
         } );
         if(!haveNetworkConnection()){
-            Toast.makeText(getApplicationContext(),"No Network Connection",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),R.string.network,Toast.LENGTH_LONG).show();
         }
         SESSION();
         progressBars = findViewById(R.id.progressBar2);
@@ -126,7 +126,7 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
                 if(!haveNetworkConnection()){
 
 
-                    Toast.makeText(getApplicationContext(),"No Network Connection",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),R.string.network,Toast.LENGTH_LONG).show();
                     progressBars.setVisibility(View.GONE);
                 }
 
@@ -135,16 +135,16 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
                 if (email.isEmpty()) {
                     // progressBars.setVisibility(View.GONE);
                     progressBars.setVisibility(View.GONE);
-                    emailId.setError( "Please enter email id" );
+                    emailId.setError( getString(R.string.enter_email_id) );
                     emailId.requestFocus();
                 } else if (pwd.isEmpty()) {
                     //progressBars.setVisibility(View.GONE);
                     progressBars.setVisibility(View.GONE);
-                    Toast.makeText( getApplicationContext(),"Password Required",Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( getApplicationContext(),R.string.required,Toast.LENGTH_SHORT ).show();
                 } else if (email.isEmpty() && pwd.isEmpty()) {
                     //   progressBars.setVisibility(View.GONE);
                     progressBars.setVisibility(View.GONE);
-                    Toast.makeText( getApplicationContext(), "Fields Are Empty!", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( getApplicationContext(), R.string.field, Toast.LENGTH_SHORT ).show();
                 } else if (!(email.isEmpty() && pwd.isEmpty())) {
                     //check this runs
                     Log.d( "LOOP 1", "status: login " );//ye lga rhndo
@@ -156,7 +156,7 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
 
                                 progressBars.setVisibility(View.GONE);
 
-                                Toast.makeText( Home_Login.this, "Something went wrong!!", Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( Home_Login.this, R.string.wrong, Toast.LENGTH_SHORT ).show();
 
                             } else {
                                 // progressBars.setVisibility(View.GONE);
@@ -194,7 +194,7 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
                                                 FirebaseAuth.getInstance().signOut();
                                                 progressBars.setVisibility(View.GONE);
                                                 Save.save(getApplicationContext(),"session","false");
-                                                Toast.makeText(Home_Login.this, "Email Not Verified", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Home_Login.this, R.string.not_verify, Toast.LENGTH_SHORT).show();
                                                 //restart this activity
                                             }
                                         }
@@ -220,7 +220,7 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
             //here when user first or logout
             //In here,intent to signup for first reg
 
-            Toast.makeText(this,"Already Logged In",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.already,Toast.LENGTH_LONG).show();
             Intent signup=new Intent(getApplicationContext(),Dashboard.class);
             startActivity(signup);
 

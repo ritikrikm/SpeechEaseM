@@ -63,7 +63,7 @@ public class add_cat extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Name is Empty",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.empty,Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -32,7 +32,7 @@ public class NameChange extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(et.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Name is Empty",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.empty,Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Intent i = getIntent();
@@ -47,7 +47,7 @@ public class NameChange extends AppCompatActivity {
                         documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(),"Name updated",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),R.string.name_updated,Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });

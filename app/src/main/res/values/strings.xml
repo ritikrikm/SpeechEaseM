@@ -52,12 +52,35 @@
     <string name="shopping" translatable="false">Shopping</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="add">Add Template</string>
+    <string name="empty">Name is empty</string>
+    <string name="tempname">Template Name</string>
+    <string name="back">Press back again to exit</string>
+    <string name="check">Please Check your Registered Email</string>
+    <string name="network">No Network Connection</string>
+    <string name="edit_temp">Edit Template</string>
+    <string name="already">Already Logged In</string>
+    <string name="exist">User on this phone number already exists</string>
+    <string name="required">Password Required</string>
+    <string name="characters">Password should be least 6 characters long</string>
+    <string name="match">Password does not match the given criteria</string>
+    <string name="ph">Please Enter Your Numbers</string>
+    <string name="updated">Updated</string>
+
+    <string name="field">Fields Are Empty!</string>
+    <string name="wrong">Something went wrong!!</string>
+
+    <string name="not_verify">Email not verified</string>
+    <string name="name_updated">Name updated</string>
+    <string name="pu">Profile Updated</string>
+    <string name="error_later">Error,Please try again later</string>
+
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>
 
     </string-array>
-    française
+
     <string name="english">English</string>
     <string name="french">française</string>
     <string name="clear">Clear</string>
