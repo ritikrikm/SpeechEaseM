@@ -31,6 +31,7 @@ import java.util.Objects;
 
 public class Selection extends AppCompatActivity {
 Button eng;
+boolean session;
 Button fre;
     FirebaseUser firebaseUser;
     FirebaseAuth mFirebaseAuth;
@@ -63,6 +64,7 @@ Button fre;
             public void onClick(View view) {
                 setLocal(Selection.this,"en");
 //                SaveSelection.save(getApplicationContext(), "selection", "en");
+                Save.save(getApplicationContext(), "session2", "true");
                 editor.putString(country,"en");
                 editor.apply();
 
@@ -80,6 +82,7 @@ Button fre;
                 setLocal(Selection.this,"fr");
 //                SaveSelection.save(getApplicationContext(), "selection", "fr");
                 editor.putString(country,"fr");
+                Save.save(getApplicationContext(), "session2", "true");
                 editor.apply();
               //  db.child("coun").setValue("fr");
                 finish();
@@ -91,25 +94,35 @@ Button fre;
 
     public void SESSION(){
        // boolean selection = Boolean.parseBoolean(SaveSelection.read(getApplicationContext(), "selection", "en"));
-        String check = sharedPref.getString(country,"");
+        session= Boolean.valueOf( Save.read(getApplicationContext(),"session2","false"));
+if(session){
+//    Intent intent = new Intent(Selection.this, Home.class);
+//    intent.putExtra("country", country);
+//    startActivity(intent);
+    String check = sharedPref.getString(country,"");
 
-        if(check.equals("en")){
+    if(check.equals("en")){
 
-            setLocal(Selection.this,"en");
-            finish();
-            Intent intent = new Intent(Selection.this, Home.class);
-            intent.putExtra("country", country);
-            startActivity(intent);
-        }
-        else if(check.equals("fr")){
+        setLocal(Selection.this,"en");
+        finish();
+        Intent intent = new Intent(Selection.this, Home.class);
+        intent.putExtra("country", country);
+        startActivity(intent);
+    }
+    else if(check.equals("fr")){
 
-            setLocal(Selection.this,"fr");
-            finish();
-            Intent intent = new Intent(Selection.this, Home.class);
-            intent.putExtra("country", country);
-            startActivity(intent);
+        setLocal(Selection.this,"fr");
+        finish();
+        Intent intent = new Intent(Selection.this, Home.class);
+        intent.putExtra("country", country);
+        startActivity(intent);
 
-        }
+    }
+}
+else{
+
+}
+
 
     }
 
@@ -121,5 +134,11 @@ Button fre;
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
         resources.updateConfiguration(configuration,resources.getDisplayMetrics());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }

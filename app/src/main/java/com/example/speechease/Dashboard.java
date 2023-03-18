@@ -10,12 +10,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -112,7 +114,8 @@ public class Dashboard extends AppCompatActivity {
                     FirebaseAuth.getInstance().signOut();
                     //saving session
                     Save.save(getApplicationContext(), "session", "false");
-                    SaveSelection.save(getApplicationContext(), "selection", null);
+
+                    Save.save(getApplicationContext(), "session2", "false");
                     Intent intent = new Intent(getApplicationContext(), Home_Login.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -227,4 +230,5 @@ public class Dashboard extends AppCompatActivity {
 
 
     }
+
 }

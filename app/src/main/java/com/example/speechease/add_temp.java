@@ -2,7 +2,6 @@ package com.example.speechease;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +23,7 @@ public class add_temp extends AppCompatActivity {
     Button add;
     Intent i;
     String key;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +38,8 @@ public class add_temp extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!name.getText().toString().isEmpty()){
-                String key2 = FirebaseDatabase.getInstance().getReference().child("Template").push().getKey();
+                if (!name.getText().toString().isEmpty()) {
+                    String key2 = FirebaseDatabase.getInstance().getReference().child("Template").push().getKey();
                     assert key != null;
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Template").child(key2);
                     db.keepSynced(true);
@@ -50,10 +50,8 @@ public class add_temp extends AppCompatActivity {
                     finish();
 
 
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),R.string.empty,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.empty, Toast.LENGTH_SHORT).show();
                 }
             }
         });

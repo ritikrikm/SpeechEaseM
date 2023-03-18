@@ -93,4 +93,5 @@
     <string name="english">English</string>
     <string name="french">Française</string>
     <string name="clear">Clear</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
