@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -80,36 +81,32 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
         Messages messages=messagesArrayList.get(position);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = database.child("Users");
         // Read from the database
-        myRef.keepSynced(true);
+        Query query = myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+
         myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+        myRef.keepSynced(true);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
                     User value = dataSnapshot1.getValue(User.class);
-                    assert value != null;
+
+
                     gender = value.getGender();
                     country = value.getCoun();
-
-
                 }
 
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
 
         if(holder.getClass()==SenderViewHolder.class)
         {

@@ -80,6 +80,7 @@ public class BucketRecyclerView extends RecyclerView {
         super(context, attrs, defStyleAttr);
     }
 
+
     @Override
     public void setAdapter(Adapter adapter){
         super.setAdapter(adapter);

@@ -168,6 +168,8 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
                                                 vname = "en-GB-language";
                                             }
 
+                Log.e("Checkthis",l+c+vname);
+
 
 
                                             Voice v=new Voice(vname,new Locale(l,c),400,200,true,a);
@@ -261,35 +263,55 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
     protected void onStart(){
         super.onStart();
         adapter.startListening();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = database.child("Users");
         // Read from the database
-        myRef.keepSynced(true);
+        Query query = myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+
         myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+        myRef.keepSynced(true);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
                     User value = dataSnapshot1.getValue(User.class);
-                    assert value != null;
+
+
                     gender = value.getGender();
                     country = value.getCoun();
-
-
                 }
 
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+//
+//                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+//                    User value = dataSnapshot1.getValue(User.class);
+//                    assert value != null;
+//                    gender = value.getGender();
+//                    country = value.getCoun();
+//
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//                Log.w(TAG, "Failed to read value.", error.toException());
+//            }
+//        });
     }
 
     @Override

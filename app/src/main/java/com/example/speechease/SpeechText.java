@@ -12,7 +12,9 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.util.Log;
@@ -37,6 +39,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,6 +61,7 @@ public class SpeechText extends Fragment {
     String country;
     Button clr_btn;
     String gender;
+    SwipeRefreshLayout swipeContainer;
 
     ImageButton msendmessagebutton;
 
@@ -104,7 +108,10 @@ public class SpeechText extends Fragment {
         msendmessagecardview=v.findViewById(R.id.carviewofsendmessage);
         msendmessagebutton=v.findViewById(R.id.imageviewsendmessage);
         clr_btn = v.findViewById(R.id.clr_btn);
+        swipeContainer = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
 
+
+            auto();
 
 
         messagesArrayList=new ArrayList<>();
@@ -142,6 +149,14 @@ public class SpeechText extends Fragment {
 
                     }
                 });
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                messagesAdapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
+            }
+        });
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,6 +170,7 @@ public class SpeechText extends Fragment {
                 else
 
                 {
+                    auto();
                     text =new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
                         @Override
                         public void onInit(int i) {
@@ -280,6 +296,17 @@ public class SpeechText extends Fragment {
         return v;
     }
 
+    private void auto() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+                swipeContainer.setRefreshing(false);
+                Log.e("Enter","HI");
+            }
+        }, 500);
+    }
+
     public void onStart() {
         super.onStart();
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(firebaseAuth.getUid());
@@ -304,33 +331,30 @@ public class SpeechText extends Fragment {
             }
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = database.child("Users");
         // Read from the database
-        myRef.keepSynced(true);
+        Query query = myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+
         myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
+        myRef.keepSynced(true);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
                     User value = dataSnapshot1.getValue(User.class);
-                    assert value != null;
+
+
                     gender = value.getGender();
                     country = value.getCoun();
-
-
                 }
 
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 

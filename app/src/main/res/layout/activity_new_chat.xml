@@ -21,8 +21,12 @@
 
 
 
-
-    <com.example.speechease.fragment.BucketRecyclerView
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:layout_width="wrap_content"
+    android:id="@+id/swipeContainer"
+android:layout_above="@id/getmessage"
+    android:layout_height="wrap_content">
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/getmessage"
@@ -30,7 +34,9 @@
 
         android:padding="5dp">
 
-    </com.example.speechease.fragment.BucketRecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -40,6 +46,7 @@
         android:layout_marginBottom="5dp"
         android:paddingLeft="20dp"
         android:paddingEnd="10dp"
+
         android:textSize="18sp"
         android:background="@drawable/bg_msg_from"
         android:textAlignment="textStart"
