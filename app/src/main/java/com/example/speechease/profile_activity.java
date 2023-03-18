@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class profile_activity extends AppCompatActivity {
@@ -40,18 +41,18 @@ public class profile_activity extends AppCompatActivity {
         btn = findViewById(R.id.upda_prof_btn);
         firebaseAuth=FirebaseAuth.getInstance();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = database.child("Users");
         // Read from the database
-        myRef.keepSynced(true);
+        Query query = myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
         myRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid());
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.keepSynced(true);
+        Log.e("uuuid",FirebaseAuth.getInstance().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
                     User value = dataSnapshot1.getValue(User.class);
 
                     String n = value.name;
@@ -63,18 +64,17 @@ public class profile_activity extends AppCompatActivity {
                     if(value.getGender().equals("Male")){
                         spinnerLanguages.setSelection(0);
                     }
-                    else
+                    else if(value.getGender().equals("Female"))
                         spinnerLanguages.setSelection(1);
                 }
-
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
 
 
 

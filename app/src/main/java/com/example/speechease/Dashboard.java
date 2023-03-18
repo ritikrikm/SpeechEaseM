@@ -91,6 +91,7 @@ public class Dashboard extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.engl){
                     setLocal(Dashboard.this,"en");
+                    Log.e("CHECKING","HI");
 
 
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid());
@@ -106,6 +107,7 @@ public class Dashboard extends AppCompatActivity {
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid());
                     db.keepSynced(true);
                     db.child("coun").setValue("fr");
+                    Log.e("CHECKING","HI");
                     finish();
                     startActivity(getIntent());
 
@@ -115,7 +117,7 @@ public class Dashboard extends AppCompatActivity {
                     //saving session
                     Save.save(getApplicationContext(), "session", "false");
 
-                    Save.save(getApplicationContext(), "session2", "false");
+                 //   Save.save(getApplicationContext(), "session2", "false");
                     Intent intent = new Intent(getApplicationContext(), Home_Login.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

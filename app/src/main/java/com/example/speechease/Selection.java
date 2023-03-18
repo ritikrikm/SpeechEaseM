@@ -50,7 +50,7 @@ Button fre;
          editor = sharedPref.edit();
 
 
-        SESSION();
+        //SESSION();
         eng = findViewById(R.id.eng);
         fre = findViewById(R.id.fre);
         mFirebaseAuth = FirebaseAuth.getInstance();

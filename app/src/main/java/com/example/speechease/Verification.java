@@ -36,7 +36,6 @@ import java.util.concurrent.TimeUnit;
 public class Verification extends AppCompatActivity {
 
     private String mVerificationId;
-    String country;
     PhoneAuthProvider.ForceResendingToken token;
     private FirebaseAuth mAuth;
 
@@ -76,7 +75,7 @@ public class Verification extends AppCompatActivity {
         final String fname = intent.getStringExtra("name");
         final String number = intent.getStringExtra("number");
         final String code1 = intent.getStringExtra("code");
- country =intent.getStringExtra("country");
+ final String country =intent.getStringExtra("country");
         final String mobile = "+"+code1+number;
         sendVerificationCode(mobile);
         verify_btn.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +209,7 @@ public class Verification extends AppCompatActivity {
         final String fname = intent.getStringExtra("name");
         final String cd = intent.getStringExtra("code");
         final String number = intent.getStringExtra("number");
+        final String country = intent.getStringExtra("country");
 
 
         //  progressBar.setVisibility(View.VISIBLE);
@@ -243,7 +243,7 @@ public class Verification extends AppCompatActivity {
 
                     //final String refrelid = endvr.concat(number);
                     String uid = FirebaseAuth.getInstance().getUid();
-                    User user=new User("female",fname,email,number,uid,pwd,cd,country);
+                    User user=new User("Female",fname,email,number,uid,pwd,cd,country);
 
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

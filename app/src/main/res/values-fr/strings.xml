@@ -10,7 +10,6 @@
     <string name="input_error_email">email requis</string>
     <string name="input_error_phone_invalid">entrez un numéro de téléphone valide</string>
     <string name="input_error_email_invalid">entrer un email valide</string>
-    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
     <string name="add_category">Ajouter une catégorie</string>
     <string name="add_template">Ajouter un modèle</string>
     <string name="category_name">Catégorie Nom</string>
@@ -44,8 +43,6 @@
     <string name="text_to_speech">Texte pour parler</string>
     <string name="templates">Modèles</string>
     <string name="emoji_speech">Emoji à la parole</string>
-    <string name="name_display_here">Affichage du nom ici</string>
-    <string name="status_displays_here">L\'état s\'affiche ici</string>
     <string name="hey_what_are_the_options_in_menu">Hey, quelles sont les options du menu ?</string>
 
     <string name="we_have_sent_the_link_to_your_e_mail_please_verify_and_get_back_to_us">Nous avons envoyé le lien vers votre e-mail, veuillez vérifier et revenez vers nous</string>
@@ -71,19 +68,10 @@
     <string name="field">Les champs sont vides !</string>
     <string name="wrong">Quelque chose s\'est mal passé !!</string>
     <string name="not_verify">Email non vérifié</string>
-    <string name="name_updated">Nom mis à jour</string>
     <string name="pu">" Profil mis à jour"</string>
     <string name="error_later">Erreur, veuillez réessayer plus tard</string>
-    <string name="happy">Je suis content</string>
-    <string name="sad">je suis triste</string>
     <string name="english">English</string>
     <string name="french">Française</string>
     <string name="clear">Claire</string>
-    <string name="angry">Je suis en colère</string>
-    <string name="cool">cool</string>
-    <string name="cry">Je pleure</string>
-    <string name="think">Je suis en train de penser</string>
-    <string name="atb">Meilleurs voeux</string>
-    <string name="laugh">rire</string>
 
 </resources>

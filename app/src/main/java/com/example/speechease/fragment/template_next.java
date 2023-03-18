@@ -144,6 +144,7 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
 
                                             String vname = null;
                                             String l = null,c = null;
+
 //                                           boolean selection=  Boolean.valueOf( Save.read(getApplicationContext(),"selection","true"));
 
                                             if(gender.equals("Male") && (country.equals("fr"))){
@@ -168,20 +169,10 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
                                             }
 
 
-//                                            if(lang.equals("fr")){
-//                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));
-//                                                c = "FR";
-//                                            }
-//                                            else{
-//                                                l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
-//                                                c = "US";
-//                                            }
-
-
 
                                             Voice v=new Voice(vname,new Locale(l,c),400,200,true,a);
 
-                                            String p = String.valueOf(text.getVoices());
+
 
 
 //                                            Log.d("Hello",p);
