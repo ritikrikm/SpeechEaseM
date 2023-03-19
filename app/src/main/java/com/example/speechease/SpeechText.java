@@ -309,6 +309,7 @@ public class SpeechText extends Fragment {
 
     public void onStart() {
         super.onStart();
+        auto();
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(firebaseAuth.getUid());
 
         messagesAdapter=new MessagesAdapter(getContext(),messagesArrayList);
@@ -369,5 +370,11 @@ public class SpeechText extends Fragment {
 //            }
 //        });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        auto();
     }
 }

@@ -99,6 +99,7 @@ public class profile_activity extends AppCompatActivity {
                     String text = spinnerLanguages.getSelectedItem().toString();
                     myRef.child(FirebaseAuth.getInstance().getUid()).child("gender").setValue(text);
                     Toast.makeText(profile_activity.this,R.string.pu,Toast.LENGTH_LONG).show();
+                    finish();
 
                 }
             }

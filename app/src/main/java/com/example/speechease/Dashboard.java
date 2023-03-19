@@ -229,21 +229,9 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        final SpeechText text=new SpeechText();
-        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace( R.id.frame,text );
 
-        fragmentTransaction.commitNow();
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        final SpeechText text=new SpeechText();
-        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace( R.id.frame,text );
 
-        fragmentTransaction.commitNow();
-    }
 }

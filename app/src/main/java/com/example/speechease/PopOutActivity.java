@@ -43,7 +43,8 @@ public class PopOutActivity extends AppCompatActivity implements TextToSpeech.On
         setContentView(R.layout.activity_pop_out);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("i");
+        //String name = intent.getStringExtra("emojiName");
+        String emojispeech = intent.getStringExtra("emojiSpeech");
         // name = findViewById(R.id.emoji);
         image = findViewById(R.id.images);
         button = findViewById(R.id.audio);
@@ -135,7 +136,7 @@ public class PopOutActivity extends AppCompatActivity implements TextToSpeech.On
 //                                            } else {
                                         // btnSpeak.setEnabled(true);
 
-                                        text.speak(name, TextToSpeech.QUEUE_FLUSH, null);
+                                        text.speak(emojispeech, TextToSpeech.QUEUE_FLUSH, null);
 //                                            }
 
                                     } else {

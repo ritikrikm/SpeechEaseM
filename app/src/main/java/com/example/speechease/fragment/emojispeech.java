@@ -29,7 +29,8 @@ import com.example.speechease.R;
 public class emojispeech extends Fragment {
 
     GridView gridView;
-    String[] emojis = {"happy", "sad", "laugh", "angry", "all the best", "excited", "like", "think"};
+    String[] emojis = {"I am Happy", "I am sad", "that's so funny", "I am angry", "all the best", "Great, I am excited", "I love it", "I am thinking"};
+    String[] emojisDisplayName = {"Happy", "Sad", "Laugh", "Angry", "All the best", "Excited", "Like", "Thinking"};
     int[] emojiImages = {R.drawable.happy, R.drawable.sad, R.drawable.laugh, R.drawable.angry, R.drawable.atb, R.drawable.cool, R.drawable.like, R.drawable.think};
 
     public emojispeech() {
@@ -65,10 +66,12 @@ public class emojispeech extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 @SuppressLint("RestrictedApi") Intent intent = new Intent(getApplicationContext(), PopOutActivity.class);
 //                intent.putExtra("name", emojis[i]);
-                String ab = emojis[i];
+                String emoji = emojis[i];
+                //String emojiDispName = emojisDisplayName[i];
                 intent.putExtra("image", emojiImages[i]);
-                intent.putExtra("i", ab);
-                Log.e("CHeck", ab);
+                intent.putExtra("emojiSpeech", emoji);
+                //intent.putExtra("emojiName", emoji);
+                Log.e("CHeck", emoji);
                 startActivity(intent);
             }
         });
@@ -102,7 +105,7 @@ public class emojispeech extends Fragment {
             TextView name = view1.findViewById(R.id.emoji);
             ImageView image = view1.findViewById(R.id.images);
 
-            name.setText(emojis[i]);
+            name.setText(emojisDisplayName[i]);
             image.setImageResource(emojiImages[i]);
             return view1;
         }
