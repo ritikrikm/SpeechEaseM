@@ -5,7 +5,9 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +32,7 @@ public class profile_activity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
     String cg;
-    Button btn;
+    Button btn,cv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +41,17 @@ public class profile_activity extends AppCompatActivity {
         email = findViewById(R.id.email_profile);
         contact = findViewById(R.id.conta);
         btn = findViewById(R.id.upda_prof_btn);
+        cv = findViewById(R.id.change_voice);
         firebaseAuth=FirebaseAuth.getInstance();
-
+        cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                                            Intent installIntent = new Intent();
+                                installIntent.setAction(
+                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+                                startActivity(installIntent);
+            }
+        });
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference myRef = database.child("Users");
         // Read from the database

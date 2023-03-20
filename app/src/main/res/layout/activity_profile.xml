@@ -161,6 +161,13 @@ android:layout_below="@id/title_001"
                                 android:spinnerMode="dropdown"
                                 android:id="@+id/spinner_languages"
                                 />
+                            <Button
+                            android:id="@+id/change_voice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/spinner_languages"
+
+                            android:text="@string/changev" />
 
 
 

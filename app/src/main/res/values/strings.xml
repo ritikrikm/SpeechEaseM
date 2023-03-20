@@ -29,6 +29,8 @@
     <string name="login">Login</string>
     <string name="haven_t_signed_up">Haven\'t Signed Up?</string>
     <string name="update">UPDATE</string>
+    <string name="changev">Change Voice</string>
+
     <string name="type_a_message">Type a message</string>
     <string name="profile">Profile</string>
     <string name="name">Name</string>
