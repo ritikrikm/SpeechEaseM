@@ -199,8 +199,8 @@ public class SpeechText extends Fragment {
                                 }
                                 else if(gender.equals("Female") && (country.equals("fr"))){
                                     l="fr";
-                                    c= "CA";
-                                    vname = "fr-CA-language";
+                                    c= "FR";
+                                    vname = "fr-FR-language";
                                 }
                                 else if(gender.equals("Male") && country.equals("en")){
                                     l="en";
@@ -209,8 +209,8 @@ public class SpeechText extends Fragment {
                                 }
                                 else if(gender.equals("Female")&& country.equals("en")){
                                     l="en";
-                                    c= "GB";
-                                    vname = "en-GB-language";
+                                    c= "US";
+                                    vname = "en-US-language";
                                 }
 
 
