@@ -32,7 +32,7 @@ public class profile_activity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
     String cg;
-    Button btn,cv;
+    Button btn,cv,changeTTSBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,7 @@ public class profile_activity extends AppCompatActivity {
         contact = findViewById(R.id.conta);
         btn = findViewById(R.id.upda_prof_btn);
         cv = findViewById(R.id.change_voice);
+        changeTTSBtn = findViewById(R.id.change_tts);
         firebaseAuth=FirebaseAuth.getInstance();
         cv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +53,17 @@ public class profile_activity extends AppCompatActivity {
                                 startActivity(installIntent);
             }
         });
+
+        changeTTSBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction("com.android.settings.TTS_SETTINGS");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference myRef = database.child("Users");
         // Read from the database

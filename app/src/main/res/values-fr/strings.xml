@@ -31,8 +31,8 @@
 
 
     <string name="type_a_message">Tapez un message</string>
-    <string name="profile">Profil</string>
-    <string name="name">N</string>
+    <string name="profile">Paramètres</string>
+    <string name="name">Nom</string>
     <string name="emailid">E-Mail Adresse</string>
     <string name="gender">Genre</string>
     <string name="check_email">Vérifier l\'e-mail</string>
@@ -73,5 +73,8 @@
     <string name="english">English</string>
     <string name="french">Française</string>
     <string name="clear">Claire</string>
+    <string name="ttsSettings">Modifier le moteur vocal préféré</string>
+    <string name="changev">Changer de voix</string>
+    <string name="click">Cliquez ici</string>
 
 </resources>

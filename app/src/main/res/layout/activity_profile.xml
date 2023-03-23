@@ -32,7 +32,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card1"
                     android:layout_centerInParent="true"
-                    android:text="@string/update" />
+                    android:text="@string/update"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/title_001"
@@ -152,7 +153,8 @@ android:layout_below="@id/title_001"
                                 android:textColor="#000"
                                 android:text="@string/gender"
                                 android:textStyle="bold"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:visibility="gone"/>
                             <Spinner
                                 android:layout_width="wrap_content"
 
@@ -160,20 +162,53 @@ android:layout_below="@id/title_001"
                                 android:layout_below="@id/gender_title"
                                 android:spinnerMode="dropdown"
                                 android:id="@+id/spinner_languages"
+                                android:visibility="gone"
                                 />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/cTTSText"
+                                android:gravity="center|start"
+                                android:layout_below="@id/spinner_languages"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="#000"
+                                android:text="@string/ttsSettings"
+                                android:textStyle="bold"
+                                android:textSize="18sp"/>
+                            <Button
+                                android:id="@+id/change_tts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/cTTSText"
+
+                                android:text="@string/click" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/cvText"
+                                android:layout_below="@+id/change_tts"
+                                android:gravity="center|start"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="#000"
+                                android:text="@string/changev"
+                                android:textStyle="bold"
+                                android:textSize="18sp" />
                             <Button
                             android:id="@+id/change_voice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/spinner_languages"
+                            android:layout_below="@id/cvText"
 
-                            android:text="@string/changev" />
+                            android:text="@string/click" />
+
+
 
 
 
 
 
                         </RelativeLayout>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

@@ -32,7 +32,7 @@
     <string name="changev">Change Voice</string>
 
     <string name="type_a_message">Type a message</string>
-    <string name="profile">Profile</string>
+    <string name="profile">Settings</string>
     <string name="name">Name</string>
     <string name="emailid">Email</string>
     <string name="gender">Gender</string>
@@ -82,4 +82,6 @@
     <string name="english">English</string>
     <string name="french">Française</string>
     <string name="clear">Clear</string>
+    <string name="click">Click Here</string>
+    <string name="ttsSettings">Change Preferred Speech Engine</string>
 </resources>
