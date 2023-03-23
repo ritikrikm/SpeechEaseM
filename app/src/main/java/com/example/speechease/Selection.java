@@ -50,7 +50,7 @@ Button fre;
          editor = sharedPref.edit();
 
 
-        //SESSION();
+        SESSION();
         eng = findViewById(R.id.eng);
         fre = findViewById(R.id.fre);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -71,6 +71,7 @@ Button fre;
 
                 finish();
                 Intent intent = new Intent(Selection.this, Home.class);
+                intent.putExtra("country", "en");
                 startActivity(intent);
 
 
@@ -87,6 +88,8 @@ Button fre;
               //  db.child("coun").setValue("fr");
                 finish();
                 Intent intent = new Intent(Selection.this, Home.class);
+
+                intent.putExtra("country", "fr");
                 startActivity(intent);
             }
         });

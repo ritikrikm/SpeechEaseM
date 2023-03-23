@@ -16,8 +16,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.speechease.Utils.Save;
+import com.example.speechease.Utils.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,10 +37,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     Button btnSignIn;
     boolean session;
     Button go;
-    private EditText emailId,password,number1,fname1;
+    private EditText emailId,password,fname1;
     FirebaseAuth mFirebaseAuth;
    // ImageView chatbot;
-    private CountryCodePicker ccp;
+//    private CountryCodePicker ccp;
     String country;
     private ProgressBar progressBars;
     private static final Pattern PASSWORD_PATTERN =
@@ -64,10 +69,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         emailId = findViewById(R.id.email);
         password = findViewById(R.id.password);
         fname1 = findViewById(R.id.fname);
-        number1 = findViewById(R.id.cnumber);
+//        number1 = findViewById(R.id.cnumber);
         //chatbot=findViewById( R.id.chatbot );
-        ccp=findViewById( R.id.ccp );
-        ccp.setCountryForNameCode("CA");
+//        ccp=findViewById( R.id.ccp );
+//        ccp.setCountryForNameCode("CA");
 
         findViewById( R.id.go ).setOnClickListener( this );
 SESSION();
@@ -82,7 +87,7 @@ SESSION();
                     emailId.setText( "" );
                     password.setText( "" );
                     fname1.setText( "" );
-                    number1.setText( "" );
+//                    number1.setText( "" );
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }
@@ -128,44 +133,102 @@ SESSION();
             case R.id.go:
                 progressBars.setVisibility(View.VISIBLE);
                 findViewById( R.id.go ).setVisibility( View.VISIBLE );
-                final String phonenumber=ccp.getSelectedCountryCode();
+//                final String phonenumber=ccp.getSelectedCountryCode();
                 boolean valid = validateUser();
 
 
                 if (valid) {
-                    final String number=number1.getText().toString().trim();
+                   // final String number=number1.getText().toString().trim();
                     DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Users");
                     dbref.keepSynced(true);
-                    dbref.orderByChild("contactn").equalTo(number).addListenerForSingleValueEvent(new ValueEventListener() {
+                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.getValue() != null){
-                                progressBars.setVisibility(View.GONE);
-                                findViewById(R.id.go).setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(),R.string.exist,Toast.LENGTH_SHORT).show();
-                            }
-                            else {
+
+
                                 final String email = emailId.getText().toString().trim();
                                 final String pwd = password.getText().toString().trim();
                                 final String fname = fname1.getText().toString().trim();
 
-                                final String number = number1.getText().toString().trim();
+                              //  final String number = number1.getText().toString().trim();
                                 progressBars.setVisibility(View.GONE);
+                                mFirebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
-                                Intent intent = new Intent( getApplicationContext(), Verification.class );
-                                intent.putExtra( "name", fname );
-                                intent.putExtra( "email", email );
-                                intent.putExtra( "password", pwd );
-                                intent.putExtra( "code", phonenumber );
-                                intent.putExtra( "number", number );
-                                intent.putExtra( "country", country );
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
 
-                                startActivity( intent );
+                                            mFirebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                }
+                                            });
+
+                                            //final String refrelid = endvr.concat(number);
+                                            String uid = FirebaseAuth.getInstance().getUid();
+                                            User user=new User("Female",fname,email,"0",uid,pwd,"1",country);
+
+                                            FirebaseDatabase.getInstance().getReference("Users")
+                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>()
+                                                    {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            // progressBar.setVisibility(View.GONE);
+                                                            //progressBar.setVisibility(View.GONE);
+                                                            if (task.isSuccessful()) {
+                                                                Toast.makeText(Home.this, getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
+                                                                Intent intent = new Intent( getApplicationContext(), Home_Login.class );
+                                                                startActivity( intent );
+                                                                Toast.makeText(Home.this, getString(R.string.we_have_sent_the_link_to_your_e_mail_please_verify_and_get_back_to_us), Toast.LENGTH_LONG).show();
+
+                                                                //saving session
+
+                                                                Save.save(getApplicationContext(),"session","false");
+
+                                                                // Toast.makeText(Verification.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
+                                                                // Intent intent = new Intent(Verification.this,Reg_Sucess.class);
+                                                                //intent.putExtra("referid",refrelid);
+                                                                //    startActivity(intent);
+                                                                // finish();
+                                                            }
+                                                            else {
+                                                                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                                                    // The verification code entered was invalid
+                                                                    // Intent intent = new Intent(RequestOtp.this,Reg_Fail.class);
+                                                                    //  startActivity(intent);
+                                                                    //  finish();
+                                                                }
+
+                                                            }
+                                                        }
+                                                    });
+
+                                        }
+                                        else {
+                                            //progressBar.setVisibility(View.GONE);
+                                            //Toast.makeText(RegAct.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                            //   Intent intent = new Intent(RequestOtp.this,Reg_Fail.class);
+                                            // startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+                                });
+//                                Intent intent = new Intent( getApplicationContext(), Verification.class );
+//                                intent.putExtra( "name", fname );
+//                                intent.putExtra( "email", email );
+//                                intent.putExtra( "password", pwd );
+//                                intent.putExtra( "code", phonenumber );
+//                                intent.putExtra( "number", number );
+//                                intent.putExtra( "country", country );
+//
+//                                startActivity( intent );
 
                                 //  progressBar.setVisibility(View.GONE);
                                 findViewById( R.id.go ).setVisibility( View.VISIBLE );
                                 //Toast.makeText(RegAct.this,"NO user found",Toast.LENGTH_SHORT).show();
-                            }
+
                         }
 
                         @Override
@@ -191,7 +254,7 @@ SESSION();
         final String pwd=password.getText().toString().trim();
         final String fname=fname1.getText().toString().trim();
 
-        final String number=number1.getText().toString().trim();
+       // final String number=number1.getText().toString().trim();
 
 
         if(fname.isEmpty()){
@@ -225,17 +288,17 @@ SESSION();
 
 
 
-        else if(number.isEmpty()){
-            number1.setError(getString(R.string.ph));
-            number1.requestFocus();
-            return false;
-        }
+//        else if(number.isEmpty()){
+//            number1.setError(getString(R.string.ph));
+//            number1.requestFocus();
+//            return false;
+//        }
 
-        else if (number.length() != 10) {
-            number1.setError(getString(R.string.input_error_phone_invalid));
-            number1.requestFocus();
-            return false;
-        }
+//        else if (number.length() != 10) {
+//            number1.setError(getString(R.string.input_error_phone_invalid));
+//            number1.requestFocus();
+//            return false;
+//        }
 
 
         else {

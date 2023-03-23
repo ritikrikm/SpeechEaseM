@@ -143,43 +143,43 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/contact_number"
-                        android:textColor="#000"
-                        android:textSize="16sp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:weightSum="3"
-                        android:orientation="horizontal">
-                        <com.hbb20.CountryCodePicker
-                            android:layout_width="0dp"
-                            android:id="@+id/ccp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            app:ccp_textSize="16sp"
-                            app:ccp_areaCodeDetectedCountry="true"
+                    <!--         <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/contact_number"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+                           <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:weightSum="3"
+                                android:orientation="horizontal">
+                            <com.hbb20.CountryCodePicker
+                                    android:layout_width="0dp"
+                                    android:id="@+id/ccp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:ccp_textSize="16sp"
+                                    app:ccp_areaCodeDetectedCountry="true"
 
-                            app:ccp_showNameCode="true"
-                            android:layout_height="match_parent"/>
-
-
-                        <EditText
-                            android:id="@+id/cnumber"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2"
-                            android:hint="@string/you_will_recieve_an_otp"
-
-                            />
+                                    app:ccp_showNameCode="true"
+                                    android:layout_height="match_parent"/>
 
 
+                                <EditText
+                                    android:id="@+id/cnumber"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:hint="@string/you_will_recieve_an_otp"
 
-                    </LinearLayout>
+                                    />
+
+
+
+                            </LinearLayout> -->
 
 
 

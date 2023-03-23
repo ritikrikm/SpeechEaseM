@@ -76,5 +76,7 @@
     <string name="ttsSettings">Modifier le moteur vocal préféré</string>
     <string name="changev">Changer de voix</string>
     <string name="click">Cliquez ici</string>
+    <string name="registration_success">inscription réussi</string>
+
 
 </resources>
