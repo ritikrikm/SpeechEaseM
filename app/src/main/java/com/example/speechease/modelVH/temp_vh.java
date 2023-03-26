@@ -3,9 +3,9 @@ package com.example.speechease.modelVH;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +21,9 @@ public class temp_vh  extends RecyclerView.ViewHolder {
     public temp_vh(@NonNull View itemView) {
         super(itemView);
 
-        name = itemView.findViewById(R.id.name);
-        cv = itemView.findViewById(R.id.greeting1);
-        toolbar = itemView.findViewById(R.id.tool1);
+        name = itemView.findViewById(R.id.cat_card);
+        cv = itemView.findViewById(R.id.cardview);
+        toolbar = itemView.findViewById(R.id.tool);
 
     }
 }

@@ -71,8 +71,8 @@
     <string name="pu">" Profil mis à jour"</string>
     <string name="error_later">Erreur, veuillez réessayer plus tard</string>
     <string name="english">English</string>
-    <string name="french">Française</string>
-    <string name="clear">Claire</string>
+    <string name="french">Français</string>
+    <string name="clear">EFFACER</string>
     <string name="ttsSettings">Modifier le moteur vocal préféré</string>
     <string name="changev">Changer de voix</string>
     <string name="click">Cliquez ici</string>

@@ -87,7 +87,8 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
             protected void onBindViewHolder(@NonNull final temp_vh tv, int i, @NonNull final template_md md) {
                 tv.toolbar.inflateMenu(R.menu.menu_temp);
 
-              tv.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+              tv.toolbar.setOnMenuItemClickListener(new androidx.appcompat.widget.Toolbar.OnMenuItemClickListener() {
                   @Override
                   public boolean onMenuItemClick(MenuItem menuItem) {
                       if(menuItem.getItemId()==R.id.edit) {

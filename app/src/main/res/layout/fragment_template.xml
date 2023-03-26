@@ -1,57 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragment.template_next">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
-
-        android:layout_height="match_parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/greeting1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardMaxElevation="12dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/cat_card"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/app_name"
-                android:text="@string/hey_what_are_the_options_in_menu"
-                android:textSize="20sp" />
-<Toolbar
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/tool1"
-    android:layout_alignParentEnd="true"
-    android:layout_marginEnd="4dp"/>
+                android:gravity="start"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@id/tool"
+                android:text="@string/shopping"
+                android:textSize="24sp" />
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:id="@+id/tool"
 
+                />
+        </RelativeLayout>
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-
-
-    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
