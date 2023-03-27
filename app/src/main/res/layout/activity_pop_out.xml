@@ -10,12 +10,14 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+
+            android:layout_height="160dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="11dp"
@@ -24,12 +26,13 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageView"
             android:layout_marginTop="16dp"
             android:padding="8dp"
-            android:text="AUDIO"
+            android:text="@string/Play"
             android:textSize="18sp" />
 
     </RelativeLayout>

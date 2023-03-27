@@ -78,5 +78,26 @@
     <string name="click">Cliquez ici</string>
     <string name="registration_success">inscription réussi</string>
 
+    <string name="h">Je suis heureux</string>
+    <string name="s">Je suis triste</string>
+    <string name="l">Je ris</string>
+    <string name="a">Je suis en colère</string>
+    <string name="atbest">Tout le meilleur</string>
+    <string name="e">Ouah! Je suis tellement excité</string>
+    <string name="li">J\'adore</string>
+    <string name="t">Je réfléchis</string>
+    <string name="sic">Je suis malade</string>
+    <string name="tire">Je suis tellement fatigué</string>
 
+    <string name="happy">Heureux</string>
+    <string name="sad">Triste</string>
+    <string name="laugh">Rire</string>
+    <string name="angry">En colère</string>
+    <string name="atb">Tout le meilleur</string>
+    <string name="excited">Excité</string>
+    <string name="like">J\'aime</string>
+    <string name="think">Réfléchir</string>
+    <string name="sick">Malade</string>
+    <string name="tired">Fatigué</string>
+    <string name="Play">Jouer</string>
 </resources>

@@ -1,16 +1,7 @@
 <resources>
     <string name="app_name">SpeechEase</string>
 
-    <string name="happy">Happy</string>
-    <string name="sad">Sad</string>
-    <string name="laugh">Laugh</string>
-    <string name="angry">Angry</string>
-    <string name="atb">All the Best</string>
-    <string name="excited">Excited</string>
-    <string name="like">Like</string>
-    <string name="think">Think</string>
-    <string name="sick">Sick</string>
-    <string name="tired">Tired</string>
+
     <string name="sign_up">Sign-up</string>
     <string name="full_name">Full Name</string>
     <string name="your_name">Your Name</string>
@@ -96,5 +87,28 @@
     <string name="click">Click Here</string>
     <string name="ttsSettings">Change Preferred Speech Engine</string>
     <string name="registration_success">Registration Successful.</string>
+
+    <string name="h">I am happy</string>
+    <string name="s">I am sad</string>
+    <string name="l">I am laughing</string>
+    <string name="a">I am angry</string>
+    <string name="atbest">All the Best</string>
+    <string name="e">Wow! I am so excited</string>
+    <string name="li">I love it</string>
+    <string name="t">I am thinking</string>
+    <string name="sic">I am sick</string>
+    <string name="tire">I am so tired</string>
+
+    <string name="happy">Happy</string>
+    <string name="sad">Sad</string>
+    <string name="laugh">Laugh</string>
+    <string name="angry">Angry</string>
+    <string name="atb">All the Best</string>
+    <string name="excited">Excited</string>
+    <string name="like">Like</string>
+    <string name="think">Think</string>
+    <string name="sick">Sick</string>
+    <string name="tired">Tired</string>
+    <string name="Play">Play</string>
 
 </resources>
