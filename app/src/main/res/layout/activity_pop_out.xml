@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp"
+    tools:context=".PopOutActivity">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="20dp">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/images"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
-            android:src="@drawable/flag_haiti"/>
-        <ImageButton
-            android:id="@+id/audio"
-            android:layout_width="fill_parent"
+            android:layout_marginTop="11dp"
+            android:foregroundGravity="center"
+            android:src="@drawable/happy" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_volume_down_24"
-            android:text="Audio" />
+            android:layout_below="@id/imageView"
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:text="AUDIO"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 
 
-    </LinearLayout>
-</LinearLayout>
+
+
+
+</RelativeLayout>
