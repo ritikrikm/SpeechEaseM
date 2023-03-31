@@ -100,4 +100,7 @@
     <string name="sick">Malade</string>
     <string name="tired">Fatigué</string>
     <string name="Play">Jouer</string>
+    <string name="important_information">Informations importantes</string>
+    <string name="imp_info_content">ok</string>
+
 </resources>

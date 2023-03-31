@@ -110,5 +110,7 @@
     <string name="sick">Sick</string>
     <string name="tired">Tired</string>
     <string name="Play">Play</string>
+    <string name="important_information">Important Information</string>
+    <string name="imp_info_content">text</string>
 
 </resources>
