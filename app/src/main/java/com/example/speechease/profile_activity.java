@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class profile_activity extends AppCompatActivity {
     Spinner spinnerLanguages;
+    ImageView info1,info2;
     TextView name,email,contact;
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -38,6 +40,8 @@ public class profile_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         name = findViewById(R.id.name_profile);
+        info1 = findViewById(R.id.info1);
+        info2 = findViewById(R.id.info2);
         email = findViewById(R.id.email_profile);
         contact = findViewById(R.id.conta);
         btn = findViewById(R.id.upda_prof_btn);
@@ -63,7 +67,21 @@ public class profile_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+info1.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent i=new Intent(getApplicationContext(),info1_popup.class);
+        startActivity(i);
+    }
+});
+info2.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent i=new Intent(getApplicationContext(),info2_popup.class);
+        startActivity(i);
 
+    }
+});
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference myRef = database.child("Users");
         // Read from the database
