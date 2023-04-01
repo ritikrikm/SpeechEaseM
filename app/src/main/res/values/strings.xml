@@ -111,6 +111,7 @@
     <string name="tired">Tired</string>
     <string name="Play">Play</string>
     <string name="important_information">Important Information</string>
-    <string name="imp_info_content">text</string>
+    <string name="info_tts">Make sure the default Text to speech engine is selected as Google Speech Service. To change, click on button provided under "Change Preferred Speech Engine" and then click on "Preferred Engine" and select the "Speech Services By Google" option.</string>
+    <string name="info_voice">To change the voice, click on the button provided under "Change Voice" option and for English go to "English(United States)" and for French go to "French(France)" option.</string>
 
 </resources>

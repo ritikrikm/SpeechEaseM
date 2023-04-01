@@ -101,6 +101,7 @@
     <string name="tired">Fatigué</string>
     <string name="Play">Jouer</string>
     <string name="important_information">Informations importantes</string>
-    <string name="imp_info_content">ok</string>
+    <string name="info_tts">Assurez-vous que le moteur de synthèse vocale par défaut est sélectionné en tant que Google Speech Service. Pour changer, cliquez sur le bouton fourni sous "Modifier le moteur vocal préféré", puis cliquez sur "Moteur préféré" et sélectionnez l\'option "Services vocaux par Google".</string>
+    <string name="info_voice">Pour changer la voix, cliquez sur le bouton fourni sous l\'option "Changer de voix" et pour l\'anglais, allez sur "Anglais (États-Unis)" et pour le français, allez sur l\'option "Français (France)".</string>
 
 </resources>

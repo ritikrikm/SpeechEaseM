@@ -16,7 +16,7 @@ public class info2_popup extends AppCompatActivity {
         setContentView(R.layout.activity_info1_popup);
         textView = findViewById(R.id.textemail);
         cross = findViewById(R.id.cross_btn_rf);
-        textView.setText(R.string.imp_info_content);
+        textView.setText(R.string.info_voice);
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
