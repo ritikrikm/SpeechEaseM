@@ -95,19 +95,13 @@ public class template extends Fragment {
                 });
 
 
-//                progressBar.setVisibility(View.GONE);
-
-
                 holder.cv.setOnClickListener( new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), template_next.class);
                         intent.putExtra( "key",model.getKey() );
                         startActivity( intent );
-//                        Intent intent = new Intent(getActivity(), InternDetail.class);
-//                        intent.putExtra( "key",model.getId() );
-//
-//                        startActivity( intent );
+
                     }
                 } );
 

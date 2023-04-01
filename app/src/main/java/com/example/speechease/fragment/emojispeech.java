@@ -16,11 +16,6 @@ import com.example.speechease.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the  factory method to
- * create an instance of this fragment.
- */
 public class emojispeech extends Fragment {
 
     RecyclerView recyclerView;
@@ -28,23 +23,6 @@ public class emojispeech extends Fragment {
     List<Integer> images;
     Adapter adapter;
 
-//    public emojispeech() {
-//        // Required empty public constructor
-//    }
-
-//    public static emojispeech newInstance(String param1, String param2) {
-//        emojispeech fragment = new emojispeech();
-//        Bundle args = new Bundle();
-//
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -129,18 +129,13 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                                     notifyDataSetChanged();
 
 
-//                                            Intent installIntent = new Intent();
-//                                installIntent.setAction(
-//                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-//                                startActivity(installIntent);
+
 
                                 Set<String> a=new HashSet<>();
-//                                            String lang = Locale.getDefault().;
 
-                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
                                 String vname = null;
                                 String l = null,c = null;
-//                                           boolean selection=  Boolean.valueOf( Save.read(getApplicationContext(),"selection","true"));
+
 
                                 if(gender.equals("Male") && (country.equals("fr"))){
                                     l="fr";
@@ -163,14 +158,6 @@ public class MessagesAdapter extends RecyclerView.Adapter {
                                     vname = "en-US-language";
                                 }
 
-//                                            if(lang.equals("fr")){
-//                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));
-//                                                c = "FR";
-//                                            }
-//                                            else{
-//                                                l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
-//                                                c = "US";
-//                                            }
 
 
 
@@ -181,30 +168,13 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
                                 Log.d("Hello",p);
                                 text.setVoice(v);
-                                //text.setSpeechRate(0.8f);
-
-//                                            // int result = T2S.setLanguage(Locale.US);
-//                                            int result = text.setVoice(v);
-//
-//                                            if (result == TextToSpeech.LANG_MISSING_DATA
-//                                                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-//                                                Log.e("TTS", "This Language is not supported");
-//                                            } else {
-                                // btnSpeak.setEnabled(true);
 
                                 text.speak(messages.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
-//                                            }
+
 
                             } else {
                                 Log.e("TTS", "Initilization Failed!");
                             }
-//                            if(i!=TextToSpeech.ERROR){
-//                                // To Choose language of speech
-//                                notifyDataSetChanged();
-//                                text.setLanguage(Locale.CANADA_FRENCH);
-//                                text.speak(messages.getMessage(),TextToSpeech.QUEUE_FLUSH,null);
-//
-//                            }
 
 
                         }
@@ -218,7 +188,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         }
        else if(holder.getClass() == speaker.class){
             speaker viewHolder=(speaker)holder;
-           // viewHolder.loudbtn.sp
+
             Log.e("HI","WORKING");
         }
         else

@@ -39,8 +39,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     Button go;
     private EditText emailId,password,fname1;
     FirebaseAuth mFirebaseAuth;
-   // ImageView chatbot;
-//    private CountryCodePicker ccp;
+
     String country;
     private ProgressBar progressBars;
     private static final Pattern PASSWORD_PATTERN =
@@ -59,7 +58,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         FirebaseApp.initializeApp(getApplicationContext());
-     //   btnLogin = findViewById(R.id.btn_signin);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         progressBars = findViewById(R.id.progressBar2);
         progressBars.setVisibility(View.GONE);
@@ -69,10 +68,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         emailId = findViewById(R.id.email);
         password = findViewById(R.id.password);
         fname1 = findViewById(R.id.fname);
-//        number1 = findViewById(R.id.cnumber);
-        //chatbot=findViewById( R.id.chatbot );
-//        ccp=findViewById( R.id.ccp );
-//        ccp.setCountryForNameCode("CA");
+
 
         findViewById( R.id.go ).setOnClickListener( this );
 SESSION();
@@ -87,7 +83,7 @@ SESSION();
                     emailId.setText( "" );
                     password.setText( "" );
                     fname1.setText( "" );
-//                    number1.setText( "" );
+
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     finish();
                 }
@@ -111,7 +107,7 @@ SESSION();
         else{
             //here when user logged in
             //value here is true
-            //Toast.makeText(this,"ALREADY LOGGED IN",Toast.LENGTH_SHORT).show();
+
 
 
         }
@@ -133,12 +129,12 @@ SESSION();
             case R.id.go:
                 progressBars.setVisibility(View.VISIBLE);
                 findViewById( R.id.go ).setVisibility( View.VISIBLE );
-//                final String phonenumber=ccp.getSelectedCountryCode();
+
                 boolean valid = validateUser();
 
 
                 if (valid) {
-                   // final String number=number1.getText().toString().trim();
+
                     DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Users");
                     dbref.keepSynced(true);
                     dbref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -150,7 +146,7 @@ SESSION();
                                 final String pwd = password.getText().toString().trim();
                                 final String fname = fname1.getText().toString().trim();
 
-                              //  final String number = number1.getText().toString().trim();
+
                                 progressBars.setVisibility(View.GONE);
                                 mFirebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
@@ -165,7 +161,7 @@ SESSION();
                                                 }
                                             });
 
-                                            //final String refrelid = endvr.concat(number);
+
                                             String uid = FirebaseAuth.getInstance().getUid();
                                             User user=new User("Female",fname,email,"0",uid,pwd,"1",country);
 
@@ -175,30 +171,21 @@ SESSION();
                                                     {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
-                                                            // progressBar.setVisibility(View.GONE);
-                                                            //progressBar.setVisibility(View.GONE);
+
                                                             if (task.isSuccessful()) {
                                                                 Toast.makeText(Home.this, getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
                                                                 Intent intent = new Intent( getApplicationContext(), Home_Login.class );
                                                                 startActivity( intent );
                                                                 Toast.makeText(Home.this, getString(R.string.we_have_sent_the_link_to_your_e_mail_please_verify_and_get_back_to_us), Toast.LENGTH_LONG).show();
 
-                                                                //saving session
 
                                                                 Save.save(getApplicationContext(),"session","false");
 
-                                                                // Toast.makeText(Verification.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
-                                                                // Intent intent = new Intent(Verification.this,Reg_Sucess.class);
-                                                                //intent.putExtra("referid",refrelid);
-                                                                //    startActivity(intent);
-                                                                // finish();
+
                                                             }
                                                             else {
                                                                 if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                                                    // The verification code entered was invalid
-                                                                    // Intent intent = new Intent(RequestOtp.this,Reg_Fail.class);
-                                                                    //  startActivity(intent);
-                                                                    //  finish();
+
                                                                 }
 
                                                             }
@@ -207,27 +194,14 @@ SESSION();
 
                                         }
                                         else {
-                                            //progressBar.setVisibility(View.GONE);
-                                            //Toast.makeText(RegAct.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                            //   Intent intent = new Intent(RequestOtp.this,Reg_Fail.class);
-                                            // startActivity(intent);
+
                                             finish();
                                         }
                                     }
                                 });
-//                                Intent intent = new Intent( getApplicationContext(), Verification.class );
-//                                intent.putExtra( "name", fname );
-//                                intent.putExtra( "email", email );
-//                                intent.putExtra( "password", pwd );
-//                                intent.putExtra( "code", phonenumber );
-//                                intent.putExtra( "number", number );
-//                                intent.putExtra( "country", country );
-//
-//                                startActivity( intent );
 
-                                //  progressBar.setVisibility(View.GONE);
                                 findViewById( R.id.go ).setVisibility( View.VISIBLE );
-                                //Toast.makeText(RegAct.this,"NO user found",Toast.LENGTH_SHORT).show();
+
 
                         }
 
@@ -254,7 +228,7 @@ SESSION();
         final String pwd=password.getText().toString().trim();
         final String fname=fname1.getText().toString().trim();
 
-       // final String number=number1.getText().toString().trim();
+
 
 
         if(fname.isEmpty()){
@@ -282,23 +256,11 @@ SESSION();
         }
         else if(!PASSWORD_PATTERN.matcher(pwd).matches()){
                 Toast.makeText(getApplicationContext(),R.string.match,Toast.LENGTH_SHORT).show();
-//            Toast.makeText( getApplicationContext(),"1 Digit? \n 1 LowerCase? \n 1 UpperCase? \n 1 Special Character? \n least 6 character?",Toast.LENGTH_SHORT ).show();
+
             return false;
         }
 
 
-
-//        else if(number.isEmpty()){
-//            number1.setError(getString(R.string.ph));
-//            number1.requestFocus();
-//            return false;
-//        }
-
-//        else if (number.length() != 10) {
-//            number1.setError(getString(R.string.input_error_phone_invalid));
-//            number1.requestFocus();
-//            return false;
-//        }
 
 
         else {

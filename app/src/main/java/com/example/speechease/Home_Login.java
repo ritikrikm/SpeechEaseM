@@ -229,7 +229,7 @@ public class Home_Login extends AppCompatActivity implements TextWatcher,
         else{
             //here when user logged in
             //value here is true
-            //Toast.makeText(this,"ALREADY LOGGED IN",Toast.LENGTH_SHORT).show();
+
 
 
         }

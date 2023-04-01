@@ -47,7 +47,7 @@ public class Change_Pass extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
                 if(mFirebaseUser==null){
-                    //Toast.makeText(ForgotPass.this,"Please Login",Toast.LENGTH_SHORT).show();
+
                 }
             }
         };

@@ -96,9 +96,6 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
                           intent.putExtra("key2",md.getKey2());
 
                           startActivity(intent);
-//                            Intent intent = new Intent(getApplicationContext(), Home_Login.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                            startActivity(intent);
 
 
                       }
@@ -128,25 +125,11 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
                                     public void onInit(int i) {
                                         if (i == TextToSpeech.SUCCESS) {
 
-
-
-
-//                                            Intent installIntent = new Intent();
-//                                installIntent.setAction(
-//                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-//                                startActivity(installIntent);
-                                         
                                             Set<String> a=new HashSet<>();
-//                                            String lang = Locale.getDefault().;
-
-                                            //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-
-
 
                                             String vname = null;
                                             String l = null,c = null;
 
-//                                           boolean selection=  Boolean.valueOf( Save.read(getApplicationContext(),"selection","true"));
 
                                             if(gender.equals("Male") && (country.equals("fr"))){
                                                 l="fr";
@@ -175,59 +158,20 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
 
                                             Voice v=new Voice(vname,new Locale(l,c),400,200,true,a);
 
-
-
-
-//                                            Log.d("Hello",p);
                                             text.setVoice(v);
-                                            //text.setSpeechRate(0.8f);
-
-//                                            // int result = T2S.setLanguage(Locale.US);
-//                                            int result = text.setVoice(v);
-//
-//                                            if (result == TextToSpeech.LANG_MISSING_DATA
-//                                                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-//                                                Log.e("TTS", "This Language is not supported");
-//                                            } else {
-                                                // btnSpeak.setEnabled(true);
 
                                                 text.speak(md.getName(), TextToSpeech.QUEUE_FLUSH, null);
-//                                            }
+
 
                                         } else {
                                             Log.e("TTS", "Initilization Failed!");
                                         }
-//                                        if(i!=TextToSpeech.ERROR){
-//                                            // To Choose language of speech
-//                                            text.setLanguage(Locale.UK);
-//                                            Set<String> a=new HashSet<>();
-//                                        a.add("male");
-//                                            text.setVoice(new Voice("en-us-x-sfg#male_2-local",new Locale("en","US"),400,200,true,a));
-//                                            text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
-//                                            Log.d("UID",md.getUid());
-//                                        }
+
                                     }
                                 });
-//                                Set<String> a=new HashSet<>();
-//                                a.add("male");//here you can give male if you want to select male voice.
-//                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-//                                String s = String.valueOf(text.setLanguage(Locale.US));
-//                                Voice v=new Voice("en-us-x-sfg#male_6-local",new Locale("en",s),400,200,true,a);
-//                                text.setVoice(v);
-//                                text.setSpeechRate(0.8f);
-//
-//
-//                                    // btnSpeak.setEnabled(true);
-//                                    Log.e("TTS", "HI");
-////                                    text.setLanguage(Locale.ENGLISH);
-//                                    text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
+
                                 }
 
-
-
-//                                text.setLanguage(Locale.ENGLISH);
-//
-//                                text.speak(md.getName(),TextToSpeech.QUEUE_FLUSH,null);
                             }
 
                     });
@@ -290,29 +234,7 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
 
             }
         });
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//
-//                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-//                    User value = dataSnapshot1.getValue(User.class);
-//                    assert value != null;
-//                    gender = value.getGender();
-//                    country = value.getCoun();
-//
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException());
-//            }
-//        });
+
     }
 
     @Override
@@ -320,17 +242,4 @@ public class template_next extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
-//    private class TTSInit extends AsyncTask<Void, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            t=new TextToSpeech(getContext(), status -> {
-//                if (status == TextToSpeech.SUCCESS) {
-//                    t.setLanguage(Locale.ENGLISH);
-//                    /* now you can invoke speak() */
-//                }
-//            });
-//            return null;
-//        }
-//    }
 }

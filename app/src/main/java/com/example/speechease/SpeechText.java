@@ -175,22 +175,11 @@ public class SpeechText extends Fragment {
                         @Override
                         public void onInit(int i) {
                             if (i == TextToSpeech.SUCCESS) {
-
-
-
-//                                            Intent installIntent = new Intent();
-//                                installIntent.setAction(
-//                                        TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-//                                startActivity(installIntent);
-
                                 Set<String> a=new HashSet<>();
-//                                            String lang = Locale.getDefault().;
 
-                                //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
 
                                 String vname = null;
                                 String l = null,c = null;
-//                                           boolean selection=  Boolean.valueOf( Save.read(getApplicationContext(),"selection","true"));
 
                                 if(gender.equals("Male") && (country.equals("fr"))){
                                     l="fr";
@@ -214,16 +203,6 @@ public class SpeechText extends Fragment {
                                 }
 
 
-//                                            if(lang.equals("fr")){
-//                                                l  = String.valueOf(text.setLanguage(Locale.FRENCH));
-//                                                c = "FR";
-//                                            }
-//                                            else{
-//                                                l  = String.valueOf(text.setLanguage(Locale.ENGLISH));
-//                                                c = "US";
-//                                            }
-
-
 
                                 Voice v=new Voice(vname,new Locale(l,c),400,200,true,a);
 
@@ -232,28 +211,15 @@ public class SpeechText extends Fragment {
 
                                 Log.d("Hello",p);
                                 text.setVoice(v);
-                                //text.setSpeechRate(0.8f);
 
-//                                            // int result = T2S.setLanguage(Locale.US);
-//                                            int result = text.setVoice(v);
-//
-//                                            if (result == TextToSpeech.LANG_MISSING_DATA
-//                                                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-//                                                Log.e("TTS", "This Language is not supported");
-//                                            } else {
-                                // btnSpeak.setEnabled(true);
 
                                 text.speak(enteredmessage, TextToSpeech.QUEUE_FLUSH, null);
-//                                            }
+
 
                             } else {
                                 Log.e("TTS", "Initilization Failed!");
                             }
-//                            if(i!=TextToSpeech.ERROR){
-//                                // To Choose language of speech
-//                                text.setLanguage(Locale.UK);
-//                                text.speak(enteredmessage,TextToSpeech.QUEUE_FLUSH,null);
-//                            }
+
                         }
                     });
 
@@ -358,17 +324,6 @@ public class SpeechText extends Fragment {
 
             }
         });
-
-
-
-
-//        DocumentReference documentReference=firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
-//        documentReference.update("status","Online").addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void aVoid) {
-//                Toast.makeText(getApplicationContext(),"Now User is Online",Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
     }
 

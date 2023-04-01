@@ -63,7 +63,7 @@ Button fre;
             @Override
             public void onClick(View view) {
                 setLocal(Selection.this,"en");
-//                SaveSelection.save(getApplicationContext(), "selection", "en");
+
                 Save.save(getApplicationContext(), "session2", "true");
                 editor.putString(country,"en");
                 editor.apply();
@@ -81,11 +81,11 @@ Button fre;
             @Override
             public void onClick(View view) {
                 setLocal(Selection.this,"fr");
-//                SaveSelection.save(getApplicationContext(), "selection", "fr");
+
                 editor.putString(country,"fr");
                 Save.save(getApplicationContext(), "session2", "true");
                 editor.apply();
-              //  db.child("coun").setValue("fr");
+
                 finish();
                 Intent intent = new Intent(Selection.this, Home.class);
 
@@ -99,9 +99,7 @@ Button fre;
        // boolean selection = Boolean.parseBoolean(SaveSelection.read(getApplicationContext(), "selection", "en"));
         session= Boolean.valueOf( Save.read(getApplicationContext(),"session2","false"));
 if(session){
-//    Intent intent = new Intent(Selection.this, Home.class);
-//    intent.putExtra("country", country);
-//    startActivity(intent);
+
     String check = sharedPref.getString(country,"");
 
     if(check.equals("en")){
