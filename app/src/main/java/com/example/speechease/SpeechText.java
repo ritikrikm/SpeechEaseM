@@ -56,7 +56,7 @@ import java.util.Set;
 
 
 public class SpeechText extends Fragment {
-    BucketRecyclerView rv_internall;
+
     EditText mgetmessage;
     String country;
     Button clr_btn;
@@ -66,19 +66,13 @@ public class SpeechText extends Fragment {
     ImageButton msendmessagebutton;
 
     CardView msendmessagecardview;
-    androidx.appcompat.widget.Toolbar mtoolbarofspecificchat;
-    ImageView mimageviewofspecificuser;
-    TextView mnameofspecificuser;
-    private FirebaseFirestore firebaseFirestore;
+
     private String enteredmessage;
     Intent i;
     String mrecievername,sendername,mrecieveruid,msenderuid;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     String senderroom,recieverroom;
-
-    ImageButton mbackbuttonofspecificchat;
-
     RecyclerView mmessagerecyclerview;
 
     String currenttime;
@@ -108,7 +102,7 @@ public class SpeechText extends Fragment {
         msendmessagecardview=v.findViewById(R.id.carviewofsendmessage);
         msendmessagebutton=v.findViewById(R.id.imageviewsendmessage);
         clr_btn = v.findViewById(R.id.clr_btn);
-        swipeContainer = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
+        swipeContainer = v.findViewById(R.id.swipeContainer);
 
 
             auto();
